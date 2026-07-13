@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  FactoryTalk Optix project file - HA0004 Koch Age Oven
+  Migration target for the FactoryTalk View ME v8.00 application
+  (HA0004_Koch_Age_Oven_v800_20250512.mer) with improved data logging.
+
+  NOTE: Open this folder in FactoryTalk Optix Studio to finish project
+  generation. Studio will validate/regenerate its own serialization on
+  first open; the ProjectFiles/*.xml here define the intended model
+  (comm driver, tags, and the improved data logger).
+-->
+<Project name="HA0004_Koch_Age_Oven_FTOptix">
+  <Info>
+    <Description>Koch Age Oven HMI - FactoryTalk Optix migration with improved data logging</Description>
+    <SourceApplication>FactoryTalk View ME 8.00 - HA0004_Koch_Age_Oven</SourceApplication>
+    <Created>2026-07-13</Created>
+  </Info>
+  <ProjectFiles>
+    <File path="ProjectFiles/CommDrivers.xml"/>
+    <File path="ProjectFiles/ModelTags.xml"/>
+    <File path="ProjectFiles/DataLogger.xml"/>
+  </ProjectFiles>
+</Project>
