@@ -1,23 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  FactoryTalk Optix project file - HA0004 Koch Age Oven
-  Migration target for the FactoryTalk View ME v8.00 application
-  (HA0004_Koch_Age_Oven_v800_20250512.mer) with improved data logging.
+# FactoryTalk Optix project scaffold - HA0004 Koch Age Oven
+# Migration target for the FactoryTalk View ME v8.00 application
+# (HA0004_Koch_Age_Oven_v800_20250512.mer) with improved data logging.
+#
+# Optix Studio parses .optix files as YAML. This scaffold parses
+# cleanly but is NOT a Studio-generated project. Recommended flow -
+# create a new project in Optix Studio and configure it using
+# ProjectFiles/*.xml and TagImport/*.csv as the definition of record.
 
-  NOTE: Open this folder in FactoryTalk Optix Studio to finish project
-  generation. Studio will validate/regenerate its own serialization on
-  first open; the ProjectFiles/*.xml here define the intended model
-  (comm driver, tags, and the improved data logger).
--->
-<Project name="HA0004_Koch_Age_Oven_FTOptix">
-  <Info>
-    <Description>Koch Age Oven HMI - FactoryTalk Optix migration with improved data logging</Description>
-    <SourceApplication>FactoryTalk View ME 8.00 - HA0004_Koch_Age_Oven</SourceApplication>
-    <Created>2026-07-13</Created>
-  </Info>
-  <ProjectFiles>
-    <File path="ProjectFiles/CommDrivers.xml"/>
-    <File path="ProjectFiles/ModelTags.xml"/>
-    <File path="ProjectFiles/DataLogger.xml"/>
-  </ProjectFiles>
-</Project>
+projectname: "HA0004_Koch_Age_Oven_FTOptix"
+description: "Koch Age Oven HMI - FTOptix migration with improved data logging"
+source_application: "FactoryTalk View ME 8.00 - HA0004_Koch_Age_Oven"
+created: "2026-07-13"
+scaffold_files:
+  - "ProjectFiles/CommDrivers.xml"
+  - "ProjectFiles/ModelTags.xml"
+  - "ProjectFiles/DataLogger.xml"
+  - "TagImport/AgeOvenDataLog_Tags.csv"
