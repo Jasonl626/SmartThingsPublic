@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LocalMessages xmlns="http://Software.Rockwell.com/ViewPoint/LocalMessages" version="1.0"><Locale id="1033"><Entry trigger="1" message="CONNECTION GOOD"/><Entry trigger="2" message="CONNECTION FAILED"/><Entry trigger="3" message="DELETE ALL FAILED"/><Entry trigger="4" message="CREATE SOCKET FAILED"/><Entry trigger="5" message="CONNECTION FAILED"/><Entry trigger="6" message="CONNECTION DROPPED"/><Entry trigger="7" message="ERROR IN SETTING SOCKET PARAMETER"/></Locale></LocalMessages>

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<connections xmlns="http://schemas.factorytalk.net/livedata/2007/pool" version="1.0" id="76d4772a-7636-4cad-be1b-8bb2e96cef7f" context="RNA://$Local/HA0004_Koch_Age_Oven">
+  <read rate="PT0.5S">
+    <object id="LclMsgDisp_Status">
+      <connection property="Value">{[Aging_Furnace]SYSTEM.Panelview_MSG_Postion_Number}</connection>
+    </object>
+    <object id="LclMsgDisp_Faults">
+      <connection property="Value">{[Aging_Furnace]Message_Control.Panelview_Message_Position_Number}</connection>
+    </object>
+    <object id="Grp_QC_Test_av">
+      <connection property="Value">{[Aging_Furnace]HMI_QC_STATUS.Enabled}</connection>
+    </object>
+    <object id="MultSt_QC_Test_Ind">
+      <connection property="Indicator">{[Aging_Furnace]HMI_QC_PARAMETERS.QC_Status_Ind}</connection>
+    </object>
+    <object id="MomPB_Start_Profile_Progm1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_PROFILE_DATA_RESET}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_I_PROFILE_DATA_RESET}</connection>
+    </object>
+    <object id="MomPB_Start_Profile_Progm1_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE}</connection>
+    </object>
+    <object id="MultSt_Safety_Ctrl_Info">
+      <connection property="Indicator">{[Aging_Furnace]HMI_SC_BANNER_SAFETY_CONTROLLER_CNTL.Panelview_MSG_Postion_Number}</connection>
+    </object>
+    <object id="MultSt_Safety_Ctrl_Info_av">
+      <connection property="Value">{[Aging_Furnace]HMI_SC_BANNER_SAFETY_CONTROLLER_CNTL.PanelView_Msg_Enable}</connection>
+    </object>
+    <object id="MomPB_Flt_Rst1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_ALRM_ACK_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_I_ALRM_ACK_PB}</connection>
+    </object>
+    <object id="MomPB_Flt_Rst">
+      <connection property="Value">{[Aging_Furnace]HMI_I_FAULT_RESET_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_I_FAULT_RESET_PB}</connection>
+    </object>
+    <object id="Pnl_Flt_Ind_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_RESET_FAULT_IND}</connection>
+    </object>
+    <object id="Grp_Maint_Screen_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_MAINT_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE}</connection>
+    </object>
+    <object id="Grp_Eng_Screen_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_ENG_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE}</connection>
+    </object>
+    <object id="Grp_Quality_Screen_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_QUALITY_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE}</connection>
+    </object>
+    <object id="NumDisp_Pos1_Highest_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].Highest.Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos1_Highest_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos1_Highest_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].Highest.Min}</connection>
+    </object>
+    <object id="NumDisp_Pos1_Highest_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Highest_Temp1">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].Highest.Temp}</connection>
+    </object>
+    <object id="NumDisp_Pos1_Lowest_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].Lowest.Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos1_Lowest_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos1_Lowest_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].Lowest.Min}</connection>
+    </object>
+    <object id="NumDisp_Pos1_Lowest_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Lowest_Temp1">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].Lowest.Temp}</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_Start_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].InSpec_Start_Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_Start_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_Start_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].InSpec_Start_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_Start_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_End_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].InSpec_End_Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_End_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_End_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].InSpec_End_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_End_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_Duration_Hr1">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].Soak_Total_Time_Hr}</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_Duration_Hr1_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_Duration_Min1">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[1].Soak_Total_Time_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos1_InSpec_Duration_Min1_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_Highest_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].Highest.Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos3_Highest_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_Highest_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].Highest.Min}</connection>
+    </object>
+    <object id="NumDisp_Pos3_Highest_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_Highest_Temp">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].Highest.Temp}</connection>
+    </object>
+    <object id="NumDisp_Pos3_Lowest_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].Lowest.Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos3_Lowest_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_Lowest_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].Lowest.Min}</connection>
+    </object>
+    <object id="NumDisp_Pos3_Lowest_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_Lowest_Temp">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].Lowest.Temp}</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_Start_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].InSpec_Start_Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_Start_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_Start_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].InSpec_Start_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_Start_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_End_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].InSpec_End_Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_End_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_End_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].InSpec_End_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_End_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_Duration_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].Soak_Total_Time_Hr}</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_Duration_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_Duration_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[3].Soak_Total_Time_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos3_InSpec_Duration_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_Highest_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].Highest.Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos2_Highest_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_Highest_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].Highest.Min}</connection>
+    </object>
+    <object id="NumDisp_Pos2_Highest_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_Highest_Temp">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].Highest.Temp}</connection>
+    </object>
+    <object id="NumDisp_Pos2_Lowest_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].Lowest.Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos2_Lowest_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_Lowest_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].Lowest.Min}</connection>
+    </object>
+    <object id="NumDisp_Pos2_Lowest_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_Lowest_Temp">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].Lowest.Temp}</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_Start_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].InSpec_Start_Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_Start_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_Start_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].InSpec_Start_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_Start_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_End_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].InSpec_End_Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_End_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_End_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].InSpec_End_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_End_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_Duration_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].Soak_Total_Time_Hr}</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_Duration_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_Duration_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[2].Soak_Total_Time_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos2_InSpec_Duration_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_Highest_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].Highest.Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos4_Highest_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_Highest_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].Highest.Min}</connection>
+    </object>
+    <object id="NumDisp_Pos4_Highest_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_Highest_Temp">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].Highest.Temp}</connection>
+    </object>
+    <object id="NumDisp_Pos4_Lowest_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].Lowest.Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos4_Lowest_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_Lowest_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].Lowest.Min}</connection>
+    </object>
+    <object id="NumDisp_Pos4_Lowest_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_Lowest_Temp">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].Lowest.Temp}</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_Start_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].InSpec_Start_Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_Start_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_Start_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].InSpec_Start_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_Start_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_End_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].InSpec_End_Hour}</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_End_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_End_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].InSpec_End_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_End_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_Duration_Hr">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].Soak_Total_Time_Hr}</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_Duration_Hr_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_Duration_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_PROFILE_LOAD_CHECK_DATA[4].Soak_Total_Time_Min}</connection>
+    </object>
+    <object id="NumDisp_Pos4_InSpec_Duration_Min_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Stage_Counter}=0</connection>
+    </object>
+    <object id="MultSt_QC_Fault_Ind">
+      <connection property="Indicator">{[Aging_Furnace]HMI_O_PROFILE_LOAD_OUT_OF_SPEC}</connection>
+    </object>
+    <object id="MultSt_QC_Fault_Ind_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_PROFILE_LOAD_OUT_OF_SPEC}</connection>
+    </object>
+  </read>
+  <write>
+    <object id="MomPB_Start_Profile_Progm1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_PROFILE_DATA_RESET}</connection>
+    </object>
+    <object id="MomPB_Flt_Rst1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_ALRM_ACK_PB}</connection>
+    </object>
+    <object id="MomPB_Flt_Rst">
+      <connection property="Value">{[Aging_Furnace]HMI_I_FAULT_RESET_PB}</connection>
+    </object>
+  </write>
+</connections>

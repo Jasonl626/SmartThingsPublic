@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<connections xmlns="http://schemas.factorytalk.net/livedata/2007/pool" version="1.0" id="67f1abaf-66b2-4d67-b198-f4e0207e7bf7" context="RNA://$Local/HA0004_Koch_Age_Oven">
+  <read rate="PT0.5S">
+    <object id="LclMsgDisp_Status">
+      <connection property="Value">{[Aging_Furnace]SYSTEM.Panelview_MSG_Postion_Number}</connection>
+    </object>
+    <object id="LclMsgDisp_Faults">
+      <connection property="Value">{[Aging_Furnace]Message_Control.Panelview_Message_Position_Number}</connection>
+    </object>
+    <object id="NumDisp_Z1_Hi_Limit_Temp">
+      <connection property="Value">{[Aging_Furnace]Z1_HI_LIMIT.PV}</connection>
+    </object>
+    <object id="Txt_Z1_Broken_Wire_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Z1_HI_LIMIT_PARAMTERS.Sensor_Broken}</connection>
+    </object>
+    <object id="MultSt_Z1_Hi_Limit_Alrm">
+      <connection property="Indicator">{[Aging_Furnace]Z1_HI_LIMIT.Alarm_1_Active}</connection>
+    </object>
+    <object id="MultSt_Z1_Hi_Limit_Alrm_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Z1_HI_LIMIT_PARAMTERS.Alarm_1_Active}</connection>
+    </object>
+    <object id="NumDisp_Z1_Hi_Limit_Temp1">
+      <connection property="Value">{[Aging_Furnace]HMI_Z1_HI_LIMIT_PARAMTERS.Alarm_SP}</connection>
+    </object>
+    <object id="Grp_NumIn_Delay_Start_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_ENG_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_MAINT_VISIBLE}</connection>
+    </object>
+    <object id="NumInEn_Delay_Start">
+      <connection property="Value">{[Aging_Furnace]HMI_Z1_HI_LIMIT_PARAMTERS.Alarm_SP}</connection>
+    </object>
+    <object id="Num_Disp_Delay_Start">
+      <connection property="Value">{[Aging_Furnace]HMI_Z1_HI_LIMIT_PARAMTERS.Alarm_SP}</connection>
+    </object>
+    <object id="MomentaryPushButton1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_Z1_LIMIT_ALARM_RESET}</connection>
+    </object>
+    <object id="MomentaryPushButton1_av">
+      <connection property="Value">({[Aging_Furnace]HMI_O_SECURITY_LOGIN_ENG_VISIBLE} OR 
+{[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE} OR 
+{[Aging_Furnace]HMI_O_SECURITY_LOGIN_MAINT_VISIBLE}) AND 
+{[Aging_Furnace]HMI_Z1_HI_LIMIT_PARAMTERS.Alarm_1_Active}</connection>
+    </object>
+    <object id="NumDisp_Z2_Hi_Limit_Temp">
+      <connection property="Value">{[Aging_Furnace]Z2_HI_LIMIT.PV}</connection>
+    </object>
+    <object id="Txt_Z2_Broken_Wire_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Z2_HI_LIMIT_PARAMTERS.Sensor_Broken}</connection>
+    </object>
+    <object id="MultSt_Z2_Hi_Limit_Alrm">
+      <connection property="Indicator">{[Aging_Furnace]Z2_HI_LIMIT.Alarm_1_Active}</connection>
+    </object>
+    <object id="MultSt_Z2_Hi_Limit_Alrm_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Z2_HI_LIMIT_PARAMTERS.Alarm_1_Active}</connection>
+    </object>
+    <object id="NumDisp_Z1_Hi_Limit_Temp2">
+      <connection property="Value">{[Aging_Furnace]HMI_Z2_HI_LIMIT_PARAMTERS.Alarm_SP}</connection>
+    </object>
+    <object id="Grp_NumIn_Delay_Start2_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_ENG_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_MAINT_VISIBLE}</connection>
+    </object>
+    <object id="NumInEn_Delay_Start2">
+      <connection property="Value">{[Aging_Furnace]HMI_Z2_HI_LIMIT_PARAMTERS.Alarm_SP}</connection>
+    </object>
+    <object id="Num_Disp_Delay_Start2">
+      <connection property="Value">{[Aging_Furnace]HMI_Z2_HI_LIMIT_PARAMTERS.Alarm_SP}</connection>
+    </object>
+    <object id="MomentaryPushButton2">
+      <connection property="Value">{[Aging_Furnace]HMI_I_Z2_LIMIT_ALARM_RESET}</connection>
+    </object>
+    <object id="MomentaryPushButton2_av">
+      <connection property="Value">({[Aging_Furnace]HMI_O_SECURITY_LOGIN_ENG_VISIBLE} OR 
+{[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE} OR 
+{[Aging_Furnace]HMI_O_SECURITY_LOGIN_MAINT_VISIBLE}) AND 
+{[Aging_Furnace]HMI_Z2_HI_LIMIT_PARAMTERS.Alarm_1_Active}</connection>
+    </object>
+    <object id="Grp_System_Purge_Time_Remaining_av">
+      <connection property="Value">{[Aging_Furnace]HMI_SYSTEM_PARAMETERS.Purging}</connection>
+    </object>
+    <object id="NumDisp_Purge_Time_Remaining">
+      <connection property="Value">{[Aging_Furnace]HMI_SYSTEM_PARAMETERS.Purge_Time_Remaining_Counter.ACC}</connection>
+    </object>
+    <object id="MultSt_Z1_Bnr_Ind">
+      <connection property="Indicator">{[Aging_Furnace]HMI_Z1_FLAME_SAFEY_PARAMETERS.Status}</connection>
+    </object>
+    <object id="MultSt_Z1_Bnr_Ind_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Z1_FLAME_SAFEY_PARAMETERS.Selected}</connection>
+    </object>
+    <object id="Txt_Z1_Disabled_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Z1_FLAME_SAFEY_PARAMETERS.Selected}</connection>
+    </object>
+    <object id="MultSt_Z2_Bnr_Ind">
+      <connection property="Indicator">{[Aging_Furnace]HMI_Z2_FLAME_SAFEY_PARAMETERS.Status}</connection>
+    </object>
+    <object id="MultSt_Z2_Bnr_Ind_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Z2_FLAME_SAFEY_PARAMETERS.Selected}</connection>
+    </object>
+    <object id="Txt_Z2_Disabled_av">
+      <connection property="Value">{[Aging_Furnace]HMI_Z2_FLAME_SAFEY_PARAMETERS.Selected}</connection>
+    </object>
+    <object id="MultState_Z1_Limits_Complete">
+      <connection property="Indicator">{[Aging_Furnace]ZONE1.Limits_Complete}</connection>
+    </object>
+    <object id="MultState_Z1_Limits_Complete_av">
+      <connection property="Value">{[Aging_Furnace]ZONE1.Limits_Latched}</connection>
+    </object>
+    <object id="MultState_Z1_Limits_Latched">
+      <connection property="Indicator">{[Aging_Furnace]ZONE1.Limits_Latched}</connection>
+    </object>
+    <object id="MultState_Z1_Limits_Latched_av">
+      <connection property="Value">{[Aging_Furnace]ZONE1.Limits_Latched}</connection>
+    </object>
+    <object id="MultState_Z2_Limits_Complete">
+      <connection property="Indicator">{[Aging_Furnace]ZONE2.Limits_Complete}</connection>
+    </object>
+    <object id="MultState_Z2_Limits_Complete_av">
+      <connection property="Value">{[Aging_Furnace]ZONE2.Limits_Latched}</connection>
+    </object>
+    <object id="MultState_Z2_Limits_Latched">
+      <connection property="Indicator">{[Aging_Furnace]ZONE2.Limits_Latched}</connection>
+    </object>
+    <object id="MultState_Z2_Limits_Latched_av">
+      <connection property="Value">{[Aging_Furnace]ZONE2.Limits_Latched}</connection>
+    </object>
+    <object id="MomPB_System_Start">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SYSTEM_START_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_I_SYSTEM_START_PB}</connection>
+    </object>
+    <object id="MomPB_System_Start_av">
+      <connection property="Value">{[Aging_Furnace]HMI_SYSTEM_PARAMETERS.Stopped}</connection>
+    </object>
+    <object id="MomPB_System_Stop">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SYSTEM_STOP_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]SYSTEM.Stopped}</connection>
+    </object>
+    <object id="MomPB_Burners_Start">
+      <connection property="Value">{[Aging_Furnace]HMI_I_BRNR_START_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_O_START_AT_LEAST_ONE_BURNER_IND}</connection>
+    </object>
+    <object id="MomPB_Burners_Start_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_ENABLE_BNR_START}</connection>
+    </object>
+    <object id="NumDisp_Z1_Target_SP">
+      <connection property="Value">{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP1.Working_Output}</connection>
+    </object>
+    <object id="NumDisp_Z1_PV">
+      <connection property="Value">{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP1.PV}</connection>
+    </object>
+    <object id="NumDisp_Z1_WSP">
+      <connection property="Value">{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP1.Target_SP}</connection>
+    </object>
+    <object id="NumDisp_Z2_Target_SP">
+      <connection property="Value">{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP2.Working_Output}</connection>
+    </object>
+    <object id="NumDisp_Z2_PV">
+      <connection property="Value">{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP2.PV}</connection>
+    </object>
+    <object id="NumDisp_Z2_WSP">
+      <connection property="Value">{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP2.Target_SP}</connection>
+    </object>
+    <object id="NumDisp_Segment">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Curr_Stage_Position}</connection>
+    </object>
+    <object id="MultSt_Profile_Ind">
+      <connection property="Indicator">{[Aging_Furnace]HMI_Profile_Parameters.Profile_Status_Ind}</connection>
+    </object>
+    <object id="NumDisp_Total_Time_Remaining">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Total_Time_Remaing_Min}</connection>
+    </object>
+    <object id="Strng_Displ_Profile_Titile">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Curr_Name}</connection>
+    </object>
+    <object id="Grp_QC_Test_av">
+      <connection property="Value">{[Aging_Furnace]HMI_QC_STATUS.Enabled}</connection>
+    </object>
+    <object id="MultSt_QC_Test_Ind">
+      <connection property="Indicator">{[Aging_Furnace]HMI_QC_PARAMETERS.QC_Status_Ind}</connection>
+    </object>
+    <object id="MultSt_Safety_Ctrl_Info">
+      <connection property="Indicator">{[Aging_Furnace]HMI_SC_BANNER_SAFETY_CONTROLLER_CNTL.Panelview_MSG_Postion_Number}</connection>
+    </object>
+    <object id="MultSt_Safety_Ctrl_Info_av">
+      <connection property="Value">{[Aging_Furnace]HMI_SC_BANNER_SAFETY_CONTROLLER_CNTL.PanelView_Msg_Enable}</connection>
+    </object>
+    <object id="NumDisp_Stage_Duration">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Curr_Stage_Duration}</connection>
+    </object>
+    <object id="NumDisp_Stage_Time_Remaining_Min">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Curr_Time_Remaining_Min}</connection>
+    </object>
+    <object id="NumDisp_Stage_Time_Remaining_Sec">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Curr_Time_Remaining_Sec}</connection>
+    </object>
+    <object id="NumDisp_Start_Temp">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Curr_Stage_Start_Temp}</connection>
+    </object>
+    <object id="NumDisp_Stage_End_Temp">
+      <connection property="Value">{[Aging_Furnace]HMI_Profile_Parameters.Curr_Stage_End_Temp}</connection>
+    </object>
+    <object id="MomPB_Start_Profile_Progm2">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SECURITY_LOGOUT_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_I_SECURITY_LOGOUT_PB}</connection>
+    </object>
+    <object id="MomPB_Start_Profile_Progm2_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_LOGGED_IN}</connection>
+    </object>
+    <object id="MomPB_Start_Profile_Progm1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SECURITY_LOGIN_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_I_SECURITY_LOGIN_PB}</connection>
+    </object>
+    <object id="MomPB_Start_Profile_Progm1_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_LOGGED_IN}</connection>
+    </object>
+    <object id="Grp_Security_Time_Remaining_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_ENG_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_MAINT_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_QUALITY_VISIBLE}</connection>
+    </object>
+    <object id="NumDisp_Security_Time_Remaining">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_TIME_REMAINING}</connection>
+    </object>
+    <object id="MultSt_Security_Ind">
+      <connection property="Indicator">{[Aging_Furnace]HMI_SECURITY_STATUS_IND}</connection>
+    </object>
+    <object id="MomPB_Flt_Rst1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_ALRM_ACK_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_I_ALRM_ACK_PB}</connection>
+    </object>
+    <object id="MomPB_Flt_Rst">
+      <connection property="Value">{[Aging_Furnace]HMI_I_FAULT_RESET_PB}</connection>
+      <connection property="Indicator">{[Aging_Furnace]HMI_I_FAULT_RESET_PB}</connection>
+    </object>
+    <object id="Pnl_Flt_Ind_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_RESET_FAULT_IND}</connection>
+    </object>
+    <object id="Grp_Maint_Screen_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_MAINT_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE}</connection>
+    </object>
+    <object id="Grp_Eng_Screen_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_ENG_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE}</connection>
+    </object>
+    <object id="Grp_Quality_Screen_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_SECURITY_LOGIN_QUALITY_VISIBLE} OR {[Aging_Furnace]HMI_O_SECURITY_LOGIN_PLC_VISIBLE}</connection>
+    </object>
+    <object id="MultSt_QC_Fault_Ind">
+      <connection property="Indicator">{[Aging_Furnace]HMI_O_PROFILE_LOAD_OUT_OF_SPEC}</connection>
+    </object>
+    <object id="MultSt_QC_Fault_Ind_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_PROFILE_LOAD_OUT_OF_SPEC}</connection>
+    </object>
+    <object id="Grp_Cool_Down_Time_Remaining_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_PROFILE_COMPLETE_IND}</connection>
+    </object>
+    <object id="NumDisp_Cool_Down_Time_Remaining">
+      <connection property="Value">{[Aging_Furnace]HMI_COOL_DOWN.Time_Remaining}</connection>
+    </object>
+    <object id="StringInEn_Login_av">
+      <connection property="Value">{[Aging_Furnace]HMI_O_LOGGED_IN}</connection>
+    </object>
+    <object id="NumDisp_Restart_Timer">
+      <connection property="Value">{[Aging_Furnace]Z_HMI_SYSTEM_PARAMETERS_RESTART_SEC_ACC}</connection>
+    </object>
+  </read>
+  <write>
+    <object id="NumInEn_Delay_Start">
+      <connection property="Value">{[Aging_Furnace]HMI_Z1_HI_LIMIT_PARAMTERS.Alarm_SP}</connection>
+    </object>
+    <object id="MomentaryPushButton1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_Z1_LIMIT_ALARM_RESET}</connection>
+    </object>
+    <object id="NumInEn_Delay_Start2">
+      <connection property="Value">{[Aging_Furnace]HMI_Z2_HI_LIMIT_PARAMTERS.Alarm_SP}</connection>
+    </object>
+    <object id="MomentaryPushButton2">
+      <connection property="Value">{[Aging_Furnace]HMI_I_Z2_LIMIT_ALARM_RESET}</connection>
+    </object>
+    <object id="MomPB_System_Start">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SYSTEM_START_PB}</connection>
+    </object>
+    <object id="MomPB_System_Stop">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SYSTEM_STOP_PB}</connection>
+    </object>
+    <object id="MomPB_Burners_Start">
+      <connection property="Value">{[Aging_Furnace]HMI_I_BRNR_START_PB}</connection>
+    </object>
+    <object id="MomPB_Start_Profile_Progm2">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SECURITY_LOGOUT_PB}</connection>
+    </object>
+    <object id="MomPB_Start_Profile_Progm1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SECURITY_LOGIN_PB}</connection>
+    </object>
+    <object id="MomPB_Flt_Rst1">
+      <connection property="Value">{[Aging_Furnace]HMI_I_ALRM_ACK_PB}</connection>
+    </object>
+    <object id="MomPB_Flt_Rst">
+      <connection property="Value">{[Aging_Furnace]HMI_I_FAULT_RESET_PB}</connection>
+    </object>
+    <object id="StringInEn_Login">
+      <connection property="Value">{[Aging_Furnace]HMI_I_SECURITY_LOGIN_PASSWORD}</connection>
+    </object>
+  </write>
+</connections>
