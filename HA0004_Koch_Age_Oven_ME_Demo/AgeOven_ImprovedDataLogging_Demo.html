@@ -368,7 +368,10 @@ function restart() {
     parts: 24, state: "RAMP", fault: false,
     proc: [], fast: [], procRows: 0, fastRows: 0
   });
+  // warm up clean history; the selected scenario begins fresh at the restart point
+  const sc = S.scenario; S.scenario = "soak";
   for (let i = 0; i < PROC_WINDOW / PROC_DT; i++) simStep();
+  S.scenario = sc;
 }
 restart();
 

@@ -322,7 +322,10 @@ function restart() {
     z1fs:78, z2fs:82, hi1:{pv:96,trip:false}, hi2:{pv:94,trip:false},
     fans:{ z1c:{on:true,hrs:1204}, z1r:{on:true,hrs:1198}, z2c:{on:true,hrs:1188}, z2r:{on:true,hrs:1201}, ex:{on:true,hrs:1210} },
     parts:24, state:"RAMP", fault:false, proc:[], fast:[], procRows:0, fastRows:0, alarms:[], almSeq:0 });
+  // warm up clean history; the selected scenario begins fresh at the restart point
+  const sc = S.scenario; S.scenario = "soak";
   for (let i=0;i<PROC_WINDOW/PROC_DT;i++) simStep();
+  S.scenario = sc;
 }
 restart();
 
