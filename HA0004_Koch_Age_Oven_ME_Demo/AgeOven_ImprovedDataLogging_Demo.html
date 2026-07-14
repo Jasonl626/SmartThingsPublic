@@ -92,12 +92,25 @@
     background: var(--surface-1);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 6px 12px;
+    padding: 9px 14px;
+    min-height: 40px;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
   }
   button:hover, select:hover { border-color: var(--baseline); }
-  button.primary { font-weight: 600; }
-  button[aria-pressed="true"] { outline: 2px solid var(--loop1); outline-offset: -1px; }
+  button:active { transform: translateY(1px); }
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .seg button { border: none; border-radius: 0; min-width: 76px; font-weight: 600; color: var(--text-muted); }
+  .seg button + button { border-left: 1px solid var(--border); }
+  .seg button[aria-pressed="true"] { color: var(--text-primary); background: var(--good-wash); box-shadow: inset 0 -2px 0 var(--status-good); }
+  .seg button#btnPause[aria-pressed="true"] { background: var(--crit-wash); box-shadow: inset 0 -2px 0 var(--status-warn); }
+  .runbadge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); }
+  .runbadge.run { color: var(--status-good); background: var(--good-wash); }
+  .runbadge.paused { color: var(--text-primary); background: var(--crit-wash); border-color: var(--status-warn); }
+  .chartbadge { position: absolute; top: 12px; right: 16px; display: none; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-primary); background: var(--crit-wash); border: 1px solid var(--status-warn); border-radius: 999px; padding: 2px 9px; }
+  body.paused .chartbadge { display: inline-block; }
 
   .banner {
     display: none; align-items: center; gap: 10px;
@@ -174,7 +187,12 @@
   <header class="top">
     <h1>HA0004 Koch Age Oven — Improved Data Logging</h1>
     <div class="controls">
-      <button id="btnRun" class="primary" aria-pressed="true">⏸ Pause</button>
+      <span class="seg" role="group" aria-label="Simulation control">
+        <button id="btnRun" aria-pressed="true">▶ Run</button>
+        <button id="btnPause" aria-pressed="false">⏸ Pause</button>
+      </span>
+      <button id="btnReset" title="Restart the current scenario">⟲ Restart</button>
+      <span id="runBadge" class="runbadge run">● RUNNING</span>
       <span class="lbl">Speed</span>
       <select id="selSpeed"><option value="1">1×</option><option value="4" selected>4×</option><option value="10">10×</option></select>
       <span class="lbl">Scenario</span>
@@ -203,7 +221,7 @@
   <div class="grid2">
     <div>
       <div class="card">
-        <h2>Zone temperatures</h2>
+        <h2>Zone temperatures</h2><span class="chartbadge">⏸ PAUSED</span>
         <div class="note">Loop PV vs target setpoint · ProcessLog @ 10 s · °F</div>
         <div class="legend">
           <span class="li"><span class="sw" style="border-color:var(--loop1)"></span>Loop 1 PV</span>
@@ -216,7 +234,7 @@
       </div>
 
       <div class="card">
-        <h2>Burner working output</h2>
+        <h2>Burner working output</h2><span class="chartbadge">⏸ PAUSED</span>
         <div class="note">nanodac loop output · ProcessLog @ 10 s · %</div>
         <div class="legend">
           <span class="li"><span class="sw" style="border-color:var(--loop1)"></span>Loop 1</span>
@@ -227,7 +245,7 @@
       </div>
 
       <div class="card">
-        <h2>Flame signal strength — fast log</h2>
+        <h2>Flame signal strength — fast log</h2><span class="chartbadge">⏸ PAUSED</span>
         <div class="note">FlameSafetyFastLog @ 1 s (new) · last 5 min · %</div>
         <div class="legend">
           <span class="li"><span class="sw" style="border-color:var(--z1)"></span>Zone 1</span>
@@ -339,8 +357,19 @@ function resetScenario(sc) {
   if (sc !== "trip") { S.hi1.trip = false; S.fault = false; }
 }
 
-// warm up 30 min of history so charts open full
-for (let i = 0; i < PROC_WINDOW / PROC_DT; i++) simStep();
+// (re)seed the sim and warm up 30 min of history so charts open full
+function restart() {
+  Object.assign(S, {
+    t: 0,
+    l1: { sp: 375, pv: 92, out: 0 }, l2: { sp: 350, pv: 90, out: 0 },
+    z1fs: 78, z2fs: 82,
+    hi1: { pv: 96, trip: false }, hi2: { pv: 94, trip: false },
+    parts: 24, state: "RAMP", fault: false,
+    proc: [], fast: [], procRows: 0, fastRows: 0
+  });
+  for (let i = 0; i < PROC_WINDOW / PROC_DT; i++) simStep();
+}
+restart();
 
 // ---------- helpers ----------
 const $ = (id) => document.getElementById(id);
@@ -495,12 +524,20 @@ function renderCharts() {
 function renderAll() { renderTiles(); renderStatus(); renderLoggers(); renderTable(); renderCharts(); }
 
 // ---------- controls ----------
-$("btnRun").onclick = () => {
-  S.running = !S.running;
-  $("btnRun").textContent = S.running ? "⏸ Pause" : "▶ Run";
-  $("btnRun").setAttribute("aria-pressed", S.running);
-};
-$("selScenario").onchange = (e) => resetScenario(e.target.value);
+function setRunning(run) {
+  S.running = run;
+  $("btnRun").setAttribute("aria-pressed", String(run));
+  $("btnPause").setAttribute("aria-pressed", String(!run));
+  const b = $("runBadge");
+  b.textContent = run ? "● RUNNING" : "⏸ PAUSED";
+  b.className = "runbadge " + (run ? "run" : "paused");
+  document.body.classList.toggle("paused", !run);
+  renderAll();                                    // reflect state immediately, even while paused
+}
+$("btnRun").addEventListener("click", () => setRunning(true));
+$("btnPause").addEventListener("click", () => setRunning(false));
+$("btnReset").addEventListener("click", () => { restart(); renderAll(); });
+$("selScenario").addEventListener("change", (e) => { resetScenario(e.target.value); renderAll(); });
 $("btnCsv").onclick = () => {
   let csv = "DateAndTime,L1_PV,L1_SP,L1_Out,L2_PV,L2_SP,L2_Out,Z1_FS,Z2_FS,Z1_HiLimit_PV,Z1_HiLimit_Tripped,Z2_HiLimit_PV,Z2_HiLimit_Tripped,Skid_Part_Count,Oven_State,Active_Fault,Quality\n";
   for (const d of S.proc)
@@ -519,7 +556,7 @@ setInterval(() => {
   renderAll();
 }, 250);
 window.addEventListener("resize", renderCharts);
-renderAll();
+setRunning(true);
 </script>
 </body>
 </html>
