@@ -311,9 +311,9 @@ const S = {
 const rnd = (a) => (Math.random() - 0.5) * 2 * a;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
-function stepLoop(L, tripped, disturb) {
+function stepLoop(L, tripped, forceOut) {
   const err = L.sp - L.pv;
-  L.out = tripped ? 0 : clamp(err * 6 + 12 + rnd(2) + disturb, 0, 100);
+  L.out = tripped ? 0 : forceOut != null ? forceOut : clamp(err * 6 + 12 + rnd(2), 0, 100);
   L.pv += (L.out * 0.052 - (L.pv - 70) * 0.011) * PROC_DT / 10 + rnd(0.7);
 }
 
@@ -321,11 +321,12 @@ function simStep() {
   S.t += PROC_DT;
   const sc = S.scenario;
 
-  // hi-limit trip scenario: push loop 1 hot until trip at 425, reset handled by scenario change
-  let d1 = 0, d2 = 0;
-  if (sc === "trip" && !S.hi1.trip) { d1 = 38; if (S.hi1.pv >= 425) { S.hi1.trip = true; S.fault = true; } }
-  stepLoop(S.l1, S.hi1.trip, d1);
-  stepLoop(S.l2, S.hi2.trip, d2);
+  // trip scenario models a burner output stuck at 100% — the failure a
+  // hi-limit instrument exists for (a healthy PID would just cut output)
+  const stuck = sc === "trip" && !S.hi1.trip;
+  if (stuck && S.hi1.pv >= 425) { S.hi1.trip = true; S.fault = true; }
+  stepLoop(S.l1, S.hi1.trip, stuck ? 100 : null);
+  stepLoop(S.l2, S.hi2.trip, null);
   S.hi1.pv = S.l1.pv + 3 + rnd(1.2);
   S.hi2.pv = S.l2.pv + 2.5 + rnd(1.2);
   S.state = S.fault ? "FAULT" : (Math.abs(S.l1.sp - S.l1.pv) < 8 && Math.abs(S.l2.sp - S.l2.pv) < 8 ? "SOAK" : "RAMP");
