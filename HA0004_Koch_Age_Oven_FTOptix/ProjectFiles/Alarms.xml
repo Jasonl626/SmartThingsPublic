@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Alarm definitions for the Koch Age Oven FTOptix project.
+  Build these as FTOptix.Alarm objects per OPTIX_BUILD_GUIDE.md §4.
+  Severity: 1-1000 (Optix convention; higher = more severe).
+-->
+<Alarms>
+  <DigitalAlarm name="Z1_HiLimit_Trip" input="Model/HiLimits/Z1_HiLimit_Tripped" severity="900"
+                message="Zone 1 hi-limit TRIPPED - burners locked out" autoAcknowledge="false"/>
+  <DigitalAlarm name="Z2_HiLimit_Trip" input="Model/HiLimits/Z2_HiLimit_Tripped" severity="900"
+                message="Zone 2 hi-limit TRIPPED - burners locked out" autoAcknowledge="false"/>
+  <DigitalAlarm name="Active_Fault" input="Model/Production/Active_Fault" severity="800"
+                message="Oven system fault active" autoAcknowledge="false"/>
+  <ExclusiveLevelAlarm name="Z1_Flame_Low" input="Model/FlameSafety/Z1_FS_Signal_Strength"
+                       lowLimit="35" lowSeverity="500" lowLowLimit="20" lowLowSeverity="700"
+                       message="Zone 1 flame signal low / unstable"/>
+  <ExclusiveLevelAlarm name="Z2_Flame_Low" input="Model/FlameSafety/Z2_FS_Signal_Strength"
+                       lowLimit="35" lowSeverity="500" lowLowLimit="20" lowLowSeverity="700"
+                       message="Zone 2 flame signal low / unstable"/>
+</Alarms>

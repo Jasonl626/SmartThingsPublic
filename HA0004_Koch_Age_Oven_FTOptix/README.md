@@ -10,7 +10,10 @@ logging**.
 
 | File | Purpose |
 |------|---------|
+| `OPTIX_BUILD_GUIDE.md` | **Start here** — click-path guide to build the full project in Optix Studio (comms, tags, loggers, alarms, PlantPAx-style screens, NetLogic, deploy) |
 | `HA0004_Koch_Age_Oven_FTOptix.optix` | Scaffold manifest (YAML — Optix Studio parses `.optix` as YAML, not XML) |
+| `ProjectFiles/Alarms.xml` | Alarm object definitions (hi-limit trips, flame low, system fault) |
+| `NetLogic/CsvExportLogic.cs` | Ready-to-paste NetLogic for the DATA LOG screen's CSV export |
 | `ProjectFiles/CommDrivers.xml` | RA EtherNet/IP driver replacing the `[Aging_Furnace]` FT Linx shortcut |
 | `ProjectFiles/ModelTags.xml` | Model tag definitions mapped to the existing PLC UDTs |
 | `ProjectFiles/DataLogger.xml` | The two new data loggers (see below) |
