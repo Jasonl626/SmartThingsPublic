@@ -1,0 +1,21 @@
+TagName,DataType,PlcTag,Group,LoggedIn,Notes
+Loop1_PV,Float,HMI_NANODAC_PARAMETERS_REAL.LOOP1.PV,ControlLoops,ProcessLog,Original FT View ME log tag
+Loop1_Target_SP,Float,HMI_NANODAC_PARAMETERS_REAL.LOOP1.Target_SP,ControlLoops,ProcessLog,Original FT View ME log tag
+Loop1_Working_Output,Float,HMI_NANODAC_PARAMETERS_REAL.LOOP1.Working_Output,ControlLoops,ProcessLog+FlameSafetyFast,Original FT View ME log tag
+Loop2_PV,Float,HMI_NANODAC_PARAMETERS_REAL.LOOP2.PV,ControlLoops,ProcessLog,Original FT View ME log tag
+Loop2_Target_SP,Float,HMI_NANODAC_PARAMETERS_REAL.LOOP2.Target_SP,ControlLoops,ProcessLog,Original FT View ME log tag
+Loop2_Working_Output,Float,HMI_NANODAC_PARAMETERS_REAL.LOOP2.Working_Output,ControlLoops,ProcessLog+FlameSafetyFast,Original FT View ME log tag
+Z1_FS_Signal_Strength,Float,Z1_FLAME_SAFETY.FS_Signal_Strength,FlameSafety,ProcessLog+FlameSafetyFast,Original FT View ME log tag
+Z2_FS_Signal_Strength,Float,Z2_FLAME_SAFETY.FS_Signal_Strength,FlameSafety,ProcessLog+FlameSafetyFast,Original FT View ME log tag
+Z1_HiLimit_PV,Float,HMI_COMM_CONFIG_MB_Z1_HI_LIMIT.PV,HiLimits,ProcessLog,NEW - verify UDT member name in PLC
+Z1_HiLimit_Tripped,Boolean,HMI_COMM_CONFIG_MB_Z1_HI_LIMIT.Tripped,HiLimits,ProcessLog,NEW - verify UDT member name in PLC
+Z2_HiLimit_PV,Float,HMI_COMM_CONFIG_MB_Z2_HI_LIMIT.PV,HiLimits,ProcessLog,NEW - verify UDT member name in PLC
+Z2_HiLimit_Tripped,Boolean,HMI_COMM_CONFIG_MB_Z2_HI_LIMIT.Tripped,HiLimits,ProcessLog,NEW - verify UDT member name in PLC
+Z1_Comb_Air_Fan_Running,Boolean,ZONE1.Comb_Air_Fan.Running,Motors,ProcessLog,NEW - verify UDT member name in PLC
+Z1_ReCirc_Fan_Running,Boolean,ZONE1.ReCirc_Fan.Running,Motors,ProcessLog,NEW - verify UDT member name in PLC
+Z2_Comb_Air_Fan_Running,Boolean,ZONE2.Comb_Air_Fan.Running,Motors,ProcessLog,NEW - verify UDT member name in PLC
+Z2_ReCirc_Fan_Running,Boolean,ZONE2.ReCirc_Fan.Running,Motors,ProcessLog,NEW - verify UDT member name in PLC
+Exhaust_Fan_Running,Boolean,EXHAUST.Fan.Running,Motors,ProcessLog,NEW - verify UDT member name in PLC
+Skid_Part_Count,Int32,SKID_PART_COUNT,Production,ProcessLog,NEW - tag used by SkidPartCount macros; verify PLC tag name
+Oven_State,Int32,OVEN_STATE,Production,ProcessLog,NEW - verify PLC tag name
+Active_Fault,Boolean,SYSTEM_FAULT_ACTIVE,Production,ProcessLog,NEW - verify PLC tag name

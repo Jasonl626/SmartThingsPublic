@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Model tags for the Koch Age Oven FTOptix application.
+
+  Tag paths mirror the PLC UDT structure used by the FT View ME
+  project ([Aging_Furnace] shortcut). Group 1 is the original
+  "Age Oven flame intensity" data log tag set; groups 2-4 are the
+  additions that make up the improved data logging scope.
+-->
+<ModelTags station="RAEtherNet_IP/Aging_Furnace">
+
+  <!-- Group 1: original FT View ME data log model tags -->
+  <TagGroup name="ControlLoops">
+    <Tag name="Loop1_PV"            dataType="Float" plcTag="HMI_NANODAC_PARAMETERS_REAL.LOOP1.PV"/>
+    <Tag name="Loop1_Target_SP"     dataType="Float" plcTag="HMI_NANODAC_PARAMETERS_REAL.LOOP1.Target_SP"/>
+    <Tag name="Loop1_Working_Output" dataType="Float" plcTag="HMI_NANODAC_PARAMETERS_REAL.LOOP1.Working_Output"/>
+    <Tag name="Loop2_PV"            dataType="Float" plcTag="HMI_NANODAC_PARAMETERS_REAL.LOOP2.PV"/>
+    <Tag name="Loop2_Target_SP"     dataType="Float" plcTag="HMI_NANODAC_PARAMETERS_REAL.LOOP2.Target_SP"/>
+    <Tag name="Loop2_Working_Output" dataType="Float" plcTag="HMI_NANODAC_PARAMETERS_REAL.LOOP2.Working_Output"/>
+  </TagGroup>
+
+  <TagGroup name="FlameSafety">
+    <Tag name="Z1_FS_Signal_Strength" dataType="Float" plcTag="Z1_FLAME_SAFETY.FS_Signal_Strength"/>
+    <Tag name="Z2_FS_Signal_Strength" dataType="Float" plcTag="Z2_FLAME_SAFETY.FS_Signal_Strength"/>
+  </TagGroup>
+
+  <!-- Group 2: hi-limit instruments (previously displayed, never logged) -->
+  <TagGroup name="HiLimits">
+    <Tag name="Z1_HiLimit_PV"      dataType="Float" plcTag="HMI_COMM_CONFIG_MB_Z1_HI_LIMIT.PV"/>
+    <Tag name="Z1_HiLimit_Tripped" dataType="Boolean" plcTag="HMI_COMM_CONFIG_MB_Z1_HI_LIMIT.Tripped"/>
+    <Tag name="Z2_HiLimit_PV"      dataType="Float" plcTag="HMI_COMM_CONFIG_MB_Z2_HI_LIMIT.PV"/>
+    <Tag name="Z2_HiLimit_Tripped" dataType="Boolean" plcTag="HMI_COMM_CONFIG_MB_Z2_HI_LIMIT.Tripped"/>
+  </TagGroup>
+
+  <!-- Group 3: fan/motor run status (Motor_* parameter screens) -->
+  <TagGroup name="Motors">
+    <Tag name="Z1_Comb_Air_Fan_Running"  dataType="Boolean" plcTag="ZONE1.Comb_Air_Fan.Running"/>
+    <Tag name="Z1_ReCirc_Fan_Running"    dataType="Boolean" plcTag="ZONE1.ReCirc_Fan.Running"/>
+    <Tag name="Z2_Comb_Air_Fan_Running"  dataType="Boolean" plcTag="ZONE2.Comb_Air_Fan.Running"/>
+    <Tag name="Z2_ReCirc_Fan_Running"    dataType="Boolean" plcTag="ZONE2.ReCirc_Fan.Running"/>
+    <Tag name="Exhaust_Fan_Running"      dataType="Boolean" plcTag="EXHAUST.Fan.Running"/>
+  </TagGroup>
+
+  <!-- Group 4: production / batch context so logged data is traceable -->
+  <TagGroup name="Production">
+    <Tag name="Skid_Part_Count"  dataType="Int32"   plcTag="SKID_PART_COUNT"/>
+    <Tag name="Oven_State"       dataType="Int32"   plcTag="OVEN_STATE"/>
+    <Tag name="Active_Fault"     dataType="Boolean" plcTag="SYSTEM_FAULT_ACTIVE"/>
+  </TagGroup>
+
+</ModelTags>

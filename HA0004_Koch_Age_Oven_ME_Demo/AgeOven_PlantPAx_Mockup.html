@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HA0004 Koch Age Oven — PlantPAx-Style HMI Mockup</title>
+<style>
+  /* PlantPAx / ISA-101 high-performance style: fixed gray scheme by design.
+     Color appears only for abnormal states and alarms. */
+  :root {
+    --canvas:      #c6c8c9;   /* display background */
+    --chrome:      #4a4e52;   /* header/footer bars */
+    --chrome-ink:  #e8eaeb;
+    --equip:       #93989c;   /* static equipment fill */
+    --equip-line:  #5a5e62;
+    --run-fill:    #ffffff;   /* running equipment = white (HPHMI) */
+    --stop-fill:   #7d8286;
+    --box:         #ffffff;   /* data entry/indicator boxes */
+    --box-line:    #6d7276;
+    --ink:         #1d2124;
+    --ink-2:       #43484c;
+    --interact:    #2a78d6;   /* touch affordance border (validated blue) */
+    --crit:        #d03b3b;
+    --warn:        #fab219;
+    --good:        #0ca30c;
+    --pen1:        #2a78d6;   /* trend pens: validated categorical order */
+    --pen2:        #1baf7a;
+    --pen3:        #eda100;
+    --pen4:        #008300;
+    --grid:        #e1e0d9;
+    --muted:       #898781;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    background: #9a9ea1;
+    color: var(--ink);
+    font: 14px/1.4 "Segoe UI", system-ui, -apple-system, sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 10px;
+  }
+  .panel {
+    width: min(1120px, 100%);
+    background: var(--canvas);
+    border: 2px solid #3c4043; border-radius: 6px;
+    display: flex; flex-direction: column;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    overflow: hidden;
+  }
+
+  /* ---------- chrome ---------- */
+  .hdr {
+    display: flex; align-items: stretch; gap: 0;
+    background: var(--chrome); color: var(--chrome-ink);
+    font-size: 13px;
+  }
+  .hdr .app { padding: 8px 14px; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; }
+  .hdr .scr { padding: 8px 14px; border-left: 1px solid #61666a; font-weight: 600; white-space: nowrap; }
+  .hdr .alarmline {
+    flex: 1; display: flex; align-items: center; gap: 8px; padding: 0 12px;
+    border-left: 1px solid #61666a; font-weight: 600; min-width: 0;
+  }
+  .hdr .alarmline.active { background: var(--crit); color: #fff; }
+  .hdr .alarmline .txt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hdr .clock { padding: 8px 14px; border-left: 1px solid #61666a; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .stage { position: relative; min-height: 620px; }
+  section.screen { display: none; padding: 14px 16px 10px; }
+  section.screen.on { display: block; }
+
+  .ftr { display: flex; gap: 6px; padding: 8px; background: var(--chrome); }
+  .ftr button {
+    flex: 1; min-height: 46px; font: 600 13px "Segoe UI", system-ui, sans-serif;
+    color: var(--chrome-ink); background: #5d6266;
+    border: 1px solid #7b8084; border-bottom-width: 3px; border-radius: 4px;
+    cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  .ftr button:active { transform: translateY(1px); }
+  .ftr button[aria-current="true"] { background: var(--canvas); color: var(--ink); border-color: var(--canvas); }
+  .ftr button .badge { color: var(--crit); font-weight: 800; }
+  .ftr button[aria-current="true"] .badge { color: var(--crit); }
+
+  /* ---------- HPHMI atoms ---------- */
+  .valbox {
+    display: inline-flex; align-items: baseline; gap: 4px;
+    background: var(--box); border: 1px solid var(--box-line); border-radius: 3px;
+    padding: 3px 8px; font-variant-numeric: tabular-nums;
+  }
+  .valbox b { font-size: 17px; font-weight: 700; }
+  .valbox .u { font-size: 11px; color: var(--ink-2); }
+  .valbox.click { border: 2px solid var(--interact); cursor: pointer; }
+  .valbox.alarm { border: 3px solid var(--crit); animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { border-color: transparent; } }
+  .lbl11 { font-size: 11px; color: var(--ink-2); letter-spacing: 0.02em; }
+
+  .statebox { display:inline-block; background: var(--box); border:1px solid var(--box-line); border-radius:3px; padding:3px 10px; font-weight:700; }
+  .statebox.fault { background: var(--crit); color:#fff; animation: blink 1s steps(2) infinite; }
+
+  /* ---------- P&ID svg ---------- */
+  svg.pid { width: 100%; display: block; }
+  svg.pid text { font: 12px "Segoe UI", system-ui, sans-serif; fill: var(--ink); }
+  svg.pid text.small { font-size: 10.5px; fill: var(--ink-2); }
+  svg.pid .clickable { cursor: pointer; }
+
+  /* ---------- faceplate ---------- */
+  .scrim { position: absolute; inset: 0; background: rgba(30,32,34,0.35); display: none; z-index: 20; }
+  .scrim.on { display: block; }
+  .fp {
+    position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+    width: 340px; background: var(--canvas); border: 2px solid var(--chrome);
+    border-radius: 6px; z-index: 21; display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  .fp.on { display: block; }
+  .fp .fph { display: flex; align-items: center; background: var(--chrome); color: var(--chrome-ink); font-weight: 700; font-size: 13px; }
+  .fp .fph .t { flex: 1; padding: 7px 12px; }
+  .fp .fph .x { width: 42px; min-height: 34px; border: none; background: transparent; color: var(--chrome-ink); font-size: 17px; cursor: pointer; }
+  .fp .body { padding: 12px; display: grid; gap: 10px; }
+  .fp .rowline { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .fp .big { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .bar { height: 14px; background: var(--box); border: 1px solid var(--box-line); border-radius: 3px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--equip-line); }
+  .fp .btns { display: flex; gap: 8px; }
+  .fp .btns button {
+    flex: 1; min-height: 42px; font: 600 13px "Segoe UI", system-ui, sans-serif;
+    background: #dfe1e2; color: var(--ink); border: 1px solid var(--box-line);
+    border-bottom-width: 3px; border-radius: 4px; cursor: pointer; touch-action: manipulation;
+  }
+  .fp .btns button[aria-pressed="true"] { background: var(--box); border-color: var(--interact); border-width: 2px 2px 3px; }
+  .fp .btns button:active { transform: translateY(1px); }
+  .fp .note { font-size: 11px; color: var(--ink-2); }
+  .fp .spadj { display: flex; gap: 8px; align-items: center; }
+  .fp .spadj button { width: 46px; min-height: 38px; font-size: 16px; font-weight: 700; background: #dfe1e2; border: 1px solid var(--box-line); border-bottom-width: 3px; border-radius: 4px; cursor: pointer; }
+
+  /* ---------- cards / tables / charts (trend + log screens) ---------- */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 860px) { .cards { grid-template-columns: 1fr; } }
+  .card { background: #fcfcfb; border: 1px solid var(--box-line); border-radius: 6px; padding: 10px 12px; position: relative; }
+  .card h3 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .card .note { font-size: 11.5px; color: var(--muted); margin-bottom: 6px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11.5px; color: var(--ink-2); margin-bottom: 2px; }
+  .legend .li { display: flex; align-items: center; gap: 5px; }
+  .sw { width: 14px; border-top: 2.5px solid; display: inline-block; }
+  .sw.dash { border-top-style: dashed; }
+  .chart { width: 100%; display: block; }
+  .chart text { font: 10.5px "Segoe UI", system-ui, sans-serif; font-variant-numeric: tabular-nums; }
+  .tooltip { position: absolute; pointer-events: none; display: none; z-index: 5; background: #fff; border: 1px solid var(--box-line); border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,0.2); padding: 7px 9px; font-size: 12px; min-width: 140px; }
+  .tooltip .tt-t { color: var(--muted); margin-bottom: 3px; }
+  .tooltip .row { display: flex; justify-content: space-between; gap: 12px; }
+  .tooltip .dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; margin-right: 5px; }
+  .tooltip .vl { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  .tablewrap { overflow-x: auto; background: #fcfcfb; border: 1px solid var(--box-line); border-radius: 6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; white-space: nowrap; }
+  th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child, th.l, td.l { text-align: left; }
+  th { color: var(--muted); font-weight: 600; }
+  .sev { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; }
+  .sev.crit { color: var(--crit); } .sev.warn { color: #8a6200; }
+  .ackbtn { min-height: 30px; padding: 2px 10px; font-size: 12px; border: 1px solid var(--box-line); border-bottom-width: 3px; border-radius: 4px; background: #dfe1e2; cursor: pointer; }
+
+  /* ---------- sim strip (not part of the HMI design) ---------- */
+  .simstrip { width: min(1120px, 100%); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 4px; color: #e8eaeb; font-size: 12px; }
+  .simstrip .tag { font-weight: 700; letter-spacing: 0.05em; background: #3c4043; border-radius: 4px; padding: 4px 8px; }
+  .simstrip button, .simstrip select { min-height: 36px; font: 600 12px "Segoe UI", system-ui, sans-serif; border-radius: 5px; border: 1px solid #7b8084; background: #5d6266; color: #e8eaeb; padding: 4px 10px; cursor: pointer; touch-action: manipulation; }
+  .simstrip button[aria-pressed="true"] { background: #e8eaeb; color: #1d2124; }
+</style>
+</head>
+<body data-palette="#2a78d6,#1baf7a,#eda100,#008300">
+
+<div class="panel">
+  <div class="hdr">
+    <div class="app">HA0004 · KOCH AGE OVEN</div>
+    <div class="scr" id="scrTitle">MAIN</div>
+    <div class="alarmline" id="alarmLine"><span class="txt" id="alarmTxt">No active alarms</span></div>
+    <div class="clock" id="clock">--:--:--</div>
+  </div>
+
+  <div class="stage">
+
+    <!-- ================= MAIN ================= -->
+    <section class="screen on" id="scr-main">
+      <svg class="pid" id="pid" viewBox="0 0 1080 560"></svg>
+    </section>
+
+    <!-- ================= TRENDS ================= -->
+    <section class="screen" id="scr-trend">
+      <div class="cards">
+        <div class="card" style="grid-column:1/-1">
+          <h3>Zone temperatures</h3><div class="note">PV vs SP · °F · last 30 min</div>
+          <div class="legend">
+            <span class="li"><span class="sw" style="border-color:var(--pen1)"></span>L1 PV</span>
+            <span class="li"><span class="sw dash" style="border-color:var(--pen1)"></span>L1 SP</span>
+            <span class="li"><span class="sw" style="border-color:var(--pen2)"></span>L2 PV</span>
+            <span class="li"><span class="sw dash" style="border-color:var(--pen2)"></span>L2 SP</span>
+          </div>
+          <svg id="chTemp" class="chart" height="220"></svg><div class="tooltip" id="ttTemp"></div>
+        </div>
+        <div class="card">
+          <h3>Burner output</h3><div class="note">% · last 30 min</div>
+          <div class="legend"><span class="li"><span class="sw" style="border-color:var(--pen1)"></span>Loop 1</span><span class="li"><span class="sw" style="border-color:var(--pen2)"></span>Loop 2</span></div>
+          <svg id="chOut" class="chart" height="160"></svg><div class="tooltip" id="ttOut"></div>
+        </div>
+        <div class="card">
+          <h3>Flame signal — 1 s fast log</h3><div class="note">% · last 5 min</div>
+          <div class="legend"><span class="li"><span class="sw" style="border-color:var(--pen3)"></span>Zone 1</span><span class="li"><span class="sw" style="border-color:var(--pen4)"></span>Zone 2</span></div>
+          <svg id="chFlame" class="chart" height="160"></svg><div class="tooltip" id="ttFlame"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DATA LOG ================= -->
+    <section class="screen" id="scr-log">
+      <div class="cards" style="grid-template-columns:1fr 1fr 1fr; margin-bottom:10px">
+        <div class="card"><h3>AgeOvenProcessLog</h3><div class="note">10 s · 365 d retention · 20 tags</div><div id="lg1" style="font-size:13px"></div></div>
+        <div class="card"><h3>FlameSafetyFastLog</h3><div class="note">1 s · 30 d retention · 4 tags</div><div id="lg2" style="font-size:13px"></div></div>
+        <div class="card"><h3>Export</h3><div class="note">SQL-queryable → CSV</div>
+          <button class="ackbtn" id="btnCsv" style="min-height:40px">⬇ Export ProcessLog CSV</button></div>
+      </div>
+      <div class="tablewrap"><table id="logTable"></table></div>
+    </section>
+
+    <!-- ================= ALARMS ================= -->
+    <section class="screen" id="scr-alarm">
+      <div class="tablewrap"><table id="almTable"></table></div>
+      <p class="lbl11" style="margin-top:8px">Severity per PlantPAx convention — color + shape + text, never color alone. Unacknowledged alarms blink in the header banner.</p>
+    </section>
+
+    <!-- ================= MAINTENANCE ================= -->
+    <section class="screen" id="scr-maint">
+      <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(190px,1fr))" id="maintCards"></div>
+      <p class="lbl11" style="margin-top:8px">Tap any device for its faceplate. PLC I/O detail screens from the legacy app fold into per-device faceplate diagnostics tabs (see redesign spec).</p>
+    </section>
+
+  </div>
+
+  <div class="ftr" id="nav">
+    <button data-scr="main" aria-current="true">MAIN</button>
+    <button data-scr="trend">TRENDS</button>
+    <button data-scr="log">DATA LOG</button>
+    <button data-scr="alarm">ALARMS <span class="badge" id="almBadge"></span></button>
+    <button data-scr="maint">MAINTENANCE</button>
+  </div>
+
+  <!-- faceplate -->
+  <div class="scrim" id="scrim"></div>
+  <div class="fp" id="fp">
+    <div class="fph"><div class="t" id="fpTitle"></div><button class="x" id="fpClose" aria-label="Close">✕</button></div>
+    <div class="body" id="fpBody"></div>
+  </div>
+</div>
+
+<!-- sim harness controls (not part of the HMI design) -->
+<div class="simstrip">
+  <span class="tag">SIM</span>
+  <button id="btnRun" aria-pressed="true">▶ Run</button>
+  <button id="btnPause" aria-pressed="false">⏸ Pause</button>
+  <button id="btnReset">⟲ Restart</button>
+  <select id="selSpeed"><option value="1">1×</option><option value="4" selected>4×</option><option value="10">10×</option></select>
+  <select id="selScenario">
+    <option value="soak" selected>Normal soak</option>
+    <option value="flame">Flame instability (Z2)</option>
+    <option value="trip">Zone 1 hi-limit trip</option>
+  </select>
+  <span>Simulated data — design mockup for the FT View ME rebuild. Not connected to the oven.</span>
+</div>
+
+<script>
+"use strict";
+/* ================= simulation (shared with the data-logging demo) ================= */
+const DAY0 = 6 * 3600, PROC_DT = 10, FAST_DT = 1, PROC_WINDOW = 1800, FAST_WINDOW = 300;
+const S = { t:0, running:true, scenario:"soak", proc:[], fast:[], procRows:0, fastRows:0, alarms:[], almSeq:0 };
+const rnd = a => (Math.random()-0.5)*2*a;
+const clamp = (v,a,b) => Math.min(b,Math.max(a,v));
+const $ = id => document.getElementById(id);
+const css = v => getComputedStyle(document.body).getPropertyValue(v).trim();
+const hms = t => { const x=DAY0+t; return [x/3600%24, x/60%60, x%60].map(n=>String(Math.floor(n)).padStart(2,"0")).join(":"); };
+
+function raiseAlarm(sev, tag, msg) {
+  if (S.alarms.some(a => a.tag===tag && !a.rtn)) return;
+  S.alarms.unshift({ id:++S.almSeq, t:S.t, sev, tag, msg, ack:false, rtn:false });
+  if (S.alarms.length > 40) S.alarms.pop();
+}
+function returnAlarm(tag) { for (const a of S.alarms) if (a.tag===tag && !a.rtn) a.rtn = true; }
+
+function stepLoop(L, tripped, forceOut) {
+  const err = L.sp - L.pv;
+  L.out = tripped ? 0 : forceOut != null ? forceOut : clamp(err*6 + 12 + rnd(2), 0, 100);
+  L.pv += (L.out*0.052 - (L.pv-70)*0.011) * PROC_DT/10 + rnd(0.7);
+}
+function simStep() {
+  S.t += PROC_DT;
+  // trip scenario models a burner output stuck at 100% — the failure a
+  // hi-limit instrument exists for (a healthy PID would just cut output)
+  const stuck = S.scenario==="trip" && !S.hi1.trip;
+  if (stuck && S.hi1.pv >= 425) { S.hi1.trip = true; S.fault = true;
+    raiseAlarm("crit","Z1_HI_LIMIT","Zone 1 hi-limit TRIPPED — burners locked out"); }
+  stepLoop(S.l1, S.hi1.trip, stuck ? 100 : null); stepLoop(S.l2, S.hi2.trip, null);
+  S.hi1.pv = S.l1.pv + 3 + rnd(1.2); S.hi2.pv = S.l2.pv + 2.5 + rnd(1.2);
+  if (S.scenario==="trip" && !S.hi1.trip && S.l1.pv > 400) raiseAlarm("warn","Z1_TEMP_HI","Zone 1 temperature high — approaching hi-limit");
+  S.state = S.fault ? "FAULT" : (Math.abs(S.l1.sp-S.l1.pv)<8 && Math.abs(S.l2.sp-S.l2.pv)<8 ? "SOAK" : "RAMP");
+  if (!S.fault && S.state==="SOAK" && Math.random()<0.06) S.parts++;
+  for (let i=0;i<PROC_DT/FAST_DT;i++) {
+    const tf = S.t - PROC_DT + (i+1)*FAST_DT;
+    let z1 = S.hi1.trip ? 2+rnd(1.5) : 76 + S.l1.out*0.08 + rnd(2.5);
+    let z2 = 80 + S.l2.out*0.07 + rnd(2.5);
+    if (S.scenario==="flame") z2 = 45 + 22*Math.sin(tf/7) + rnd(9);
+    S.z1fs = clamp(z1,0,100); S.z2fs = clamp(z2,0,100);
+    S.fast.push({ t:tf, z1:S.z1fs, z2:S.z2fs, o1:S.l1.out, o2:S.l2.out }); S.fastRows++;
+  }
+  while (S.fast.length && S.fast[0].t < S.t-FAST_WINDOW) S.fast.shift();
+  if (S.scenario==="flame" && S.z2fs < 35) raiseAlarm("warn","Z2_FLAME_LOW","Zone 2 flame signal low / unstable");
+  if (S.scenario!=="flame") returnAlarm("Z2_FLAME_LOW");
+  if (!S.hi1.trip) { returnAlarm("Z1_HI_LIMIT"); if (S.l1.pv < 395) returnAlarm("Z1_TEMP_HI"); }
+  S.proc.push({ t:S.t, p1:S.l1.pv, s1:S.l1.sp, o1:S.l1.out, p2:S.l2.pv, s2:S.l2.sp, o2:S.l2.out,
+    z1:S.z1fs, z2:S.z2fs, h1:S.hi1.pv, h2:S.hi2.pv, tr1:S.hi1.trip, tr2:S.hi2.trip,
+    parts:S.parts, state:S.state, fault:S.fault }); S.procRows++;
+  while (S.proc.length && S.proc[0].t < S.t-PROC_WINDOW) S.proc.shift();
+}
+function restart() {
+  Object.assign(S, { t:0, l1:{sp:375,pv:92,out:0,auto:true}, l2:{sp:350,pv:90,out:0,auto:true},
+    z1fs:78, z2fs:82, hi1:{pv:96,trip:false}, hi2:{pv:94,trip:false},
+    fans:{ z1c:{on:true,hrs:1204}, z1r:{on:true,hrs:1198}, z2c:{on:true,hrs:1188}, z2r:{on:true,hrs:1201}, ex:{on:true,hrs:1210} },
+    parts:24, state:"RAMP", fault:false, proc:[], fast:[], procRows:0, fastRows:0, alarms:[], almSeq:0 });
+  // warm up clean history; the selected scenario begins fresh at the restart point
+  const sc = S.scenario; S.scenario = "soak";
+  for (let i=0;i<PROC_WINDOW/PROC_DT;i++) simStep();
+  S.scenario = sc;
+}
+restart();
+
+/* ================= P&ID main screen ================= */
+const FANS = {
+  z1c: { x:250, y:120, label:"Z1 COMB AIR", tag:"ZONE1.Comb_Air_Fan" },
+  z1r: { x:385, y:120, label:"Z1 RECIRC",   tag:"ZONE1.ReCirc_Fan" },
+  z2c: { x:640, y:120, label:"Z2 COMB AIR", tag:"ZONE2.Comb_Air_Fan" },
+  z2r: { x:775, y:120, label:"Z2 RECIRC",   tag:"ZONE2.ReCirc_Fan" },
+  ex:  { x:945, y:88,  label:"EXHAUST",     tag:"EXHAUST.Fan" }
+};
+function fanGlyph(f, st) {
+  const fill = st.on ? "var(--run-fill)" : "var(--stop-fill)";
+  return `<g class="clickable" data-fp="motor:${f}" transform="translate(${FANS[f].x},${FANS[f].y})">
+    <circle r="26" fill="${fill}" stroke="var(--equip-line)" stroke-width="2"/>
+    <path d="M0 -18 L7 -4 L-7 -4 Z M0 18 L7 4 L-7 4 Z M-18 0 L-4 -7 L-4 7 Z M18 0 L4 -7 L4 7 Z" fill="var(--equip-line)"/>
+    <text y="44" text-anchor="middle" class="small" stroke="#c6c8c9" stroke-width="4" paint-order="stroke">${FANS[f].label}</text>
+    <text y="58" text-anchor="middle" class="small" font-weight="700" stroke="#c6c8c9" stroke-width="4" paint-order="stroke">${st.on ? "RUN" : "STOP"}</text>
+  </g>`;
+}
+function valSvg(x, y, label, val, unit, opts = {}) {
+  const w = opts.w || 118, alarm = opts.alarm, click = opts.click;
+  return `<g ${click ? `class="clickable" data-fp="${click}"` : ""} transform="translate(${x},${y})">
+    <text x="0" y="-6" class="small">${label}</text>
+    <rect width="${w}" height="30" fill="var(--box)" stroke="${alarm ? "var(--crit)" : click ? "var(--interact)" : "var(--box-line)"}" stroke-width="${alarm||click?2.5:1}" rx="3">${alarm?'<animate attributeName="stroke-opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>':''}</rect>
+    <text x="${w-34}" y="21" text-anchor="end" font-size="16" font-weight="700" style="font-variant-numeric:tabular-nums">${val}</text>
+    <text x="${w-6}" y="21" text-anchor="end" class="small">${unit}</text>
+  </g>`;
+}
+function renderPID() {
+  const p = S.proc[S.proc.length-1];
+  let g = "";
+  // duct from fans into oven
+  for (const f of ["z1c","z1r","z2c","z2r"]) g += `<line x1="${FANS[f].x}" y1="${FANS[f].y+26}" x2="${FANS[f].x}" y2="215" stroke="var(--equip-line)" stroke-width="6"/>`;
+  g += `<line x1="945" y1="114" x2="945" y2="215" stroke="var(--equip-line)" stroke-width="6"/>`;
+  g += `<text x="945" y="30" text-anchor="middle" class="small">TO STACK ▲</text>`;
+  // oven body
+  g += `<rect x="130" y="215" width="880" height="150" fill="var(--equip)" stroke="var(--equip-line)" stroke-width="2.5" rx="6"/>`;
+  g += `<line x1="540" y1="215" x2="540" y2="365" stroke="var(--equip-line)" stroke-width="2" stroke-dasharray="6 5"/>`;
+  g += `<text x="335" y="238" text-anchor="middle" font-weight="700">ZONE 1</text>`;
+  g += `<text x="775" y="238" text-anchor="middle" font-weight="700">ZONE 2</text>`;
+  // conveyor
+  g += `<line x1="40" y1="330" x2="1050" y2="330" stroke="var(--equip-line)" stroke-width="3"/>`;
+  for (let x=60;x<1050;x+=48) g += `<circle cx="${x}" cy="337" r="6" fill="none" stroke="var(--equip-line)" stroke-width="2"/>`;
+  g += `<text x="40" y="316" class="small">SKIDS IN ▶</text><text x="1005" y="316" text-anchor="end" class="small">▶ OUT</text>`;
+  // burners
+  for (const [x, z, fs, trip] of [[335,1,p.z1,p.tr1],[775,2,p.z2,p.tr2]]) {
+    const flameOn = !trip && fs > 20;
+    g += `<g class="clickable" data-fp="flame:${z}" transform="translate(${x},405)">
+      <rect x="-30" y="0" width="60" height="34" fill="var(--equip)" stroke="var(--equip-line)" stroke-width="2" rx="3"/>
+      <line x1="0" y1="0" x2="0" y2="-40" stroke="var(--equip-line)" stroke-width="5"/>
+      ${flameOn
+        ? `<path d="M0 -46 C 9 -58 4 -66 0 -74 C -4 -66 -9 -58 0 -46 Z" fill="${css("--pen3")}" stroke="var(--equip-line)" stroke-width="1"/>`
+        : `<circle cy="-58" r="9" fill="none" stroke="${trip ? "var(--crit)" : "var(--equip-line)"}" stroke-width="2.5" stroke-dasharray="3 3"/>`}
+      <text y="52" text-anchor="middle" class="small" font-weight="${trip ? 700 : 400}" fill="${trip ? "var(--crit)" : "var(--ink-2)"}">Z${z} BURNER${trip ? " — LOCKOUT" : ""}</text>
+      <rect x="-27" y="8" width="54" height="19" fill="var(--box)" stroke="var(--box-line)" rx="2"/>
+      <text y="22" text-anchor="middle" class="small" font-weight="700">FS ${fs.toFixed(0)}%</text>
+    </g>`;
+    g += `<line x1="${x}" y1="405" x2="${x}" y2="365" stroke="var(--equip-line)" stroke-width="5"/>`;
+  }
+  // loop readouts (clickable faceplates)
+  g += valSvg(210, 275, "TIC-101 · L1 PV / SP " + p.s1.toFixed(0), p.p1.toFixed(1), "°F", { click:"pide:1", alarm:p.tr1, w:150 });
+  g += valSvg(650, 275, "TIC-201 · L2 PV / SP " + p.s2.toFixed(0), p.p2.toFixed(1), "°F", { click:"pide:2", w:150 });
+  g += valSvg(410, 275, "TSH-102 · Z1 HI-LIM", p.h1.toFixed(0), "°F", { alarm:p.tr1 });
+  g += valSvg(850, 275, "TSH-202 · Z2 HI-LIM", p.h2.toFixed(0), "°F", { alarm:p.tr2 });
+  // fans
+  for (const f of Object.keys(FANS)) g += fanGlyph(f, S.fans[f]);
+  // right-side production block
+  g += `<g transform="translate(40,420)">
+    <text y="-6" class="small">OVEN STATE</text>
+    <foreignObject width="150" height="40"><div xmlns="http://www.w3.org/1999/xhtml"><span class="statebox ${p.fault?"fault":""}">${p.state}</span></div></foreignObject>
+  </g>`;
+  g += valSvg(40, 500, "SKID PART COUNT", String(p.parts), "", {});
+  g += valSvg(210, 500, "CLOCK", hms(p.t), "", { w:130 });
+  $("pid").innerHTML = g;
+  $("pid").querySelectorAll("[data-fp]").forEach(el => el.addEventListener("click", () => openFP(el.dataset.fp)));
+}
+
+/* ================= faceplates ================= */
+let fpKey = null;
+function openFP(key) { fpKey = key; $("scrim").classList.add("on"); $("fp").classList.add("on"); renderFP(); }
+function closeFP() { fpKey = null; $("scrim").classList.remove("on"); $("fp").classList.remove("on"); }
+$("fpClose").addEventListener("click", closeFP);
+$("scrim").addEventListener("click", closeFP);
+
+function renderFP() {
+  if (!fpKey) return;
+  const [kind, id] = fpKey.split(":");
+  if (kind === "pide") {
+    const L = id==="1" ? S.l1 : S.l2;
+    $("fpTitle").textContent = `TIC-${id}01 · LOOP ${id} TEMPERATURE (P_PIDE)`;
+    $("fpBody").innerHTML = `
+      <div class="rowline"><span class="lbl11">PV</span><span class="big">${L.pv.toFixed(1)} °F</span></div>
+      <div class="rowline"><span class="lbl11">SP</span>
+        <span class="spadj"><button data-sp="-5">−</button><span class="big" style="font-size:20px">${L.sp.toFixed(0)}</span><button data-sp="5">＋</button></span></div>
+      <div><div class="rowline"><span class="lbl11">OUT</span><span class="lbl11">${L.out.toFixed(0)} %</span></div>
+        <div class="bar"><i style="width:${L.out.toFixed(0)}%"></i></div></div>
+      <div class="btns"><button data-mode="auto" aria-pressed="${L.auto}">AUTO</button><button data-mode="man" aria-pressed="${!L.auto}">MANUAL</button></div>
+      <div class="note">Logged in AgeOvenProcessLog @ 10 s: PV · Target_SP · Working_Output</div>`;
+    $("fpBody").querySelectorAll("[data-sp]").forEach(b => b.addEventListener("click", () => { L.sp = clamp(L.sp + +b.dataset.sp, 200, 420); renderFP(); }));
+    $("fpBody").querySelectorAll("[data-mode]").forEach(b => b.addEventListener("click", () => { L.auto = b.dataset.mode==="auto"; renderFP(); }));
+  } else if (kind === "motor") {
+    const st = S.fans[id], meta = FANS[id];
+    $("fpTitle").textContent = `${meta.label} FAN (P_Motor)`;
+    $("fpBody").innerHTML = `
+      <div class="rowline"><span class="lbl11">STATUS</span><span class="big" style="font-size:20px">${st.on ? "RUNNING" : "STOPPED"}</span></div>
+      <div class="rowline"><span class="lbl11">RUN HOURS</span><span style="font-variant-numeric:tabular-nums;font-weight:700">${st.hrs.toLocaleString()}</span></div>
+      <div class="rowline"><span class="lbl11">INTERLOCKS</span><span style="font-weight:700;color:${S.fault?"var(--crit)":"inherit"}">${S.fault ? "⚠ FAULT ACTIVE" : "OK"}</span></div>
+      <div class="btns"><button data-cmd="start" aria-pressed="${st.on}">START</button><button data-cmd="stop" aria-pressed="${!st.on}">STOP</button></div>
+      <div class="note">PLC tag ${meta.tag}.Running — logged in AgeOvenProcessLog (new)</div>`;
+    $("fpBody").querySelectorAll("[data-cmd]").forEach(b => b.addEventListener("click", () => { st.on = b.dataset.cmd==="start"; renderFP(); renderPID(); }));
+  } else if (kind === "flame") {
+    const p = S.proc[S.proc.length-1];
+    const fs = id==="1" ? p.z1 : p.z2, trip = id==="1" ? p.tr1 : p.tr2;
+    $("fpTitle").textContent = `ZONE ${id} FLAME SAFETY`;
+    $("fpBody").innerHTML = `
+      <div class="rowline"><span class="lbl11">SIGNAL STRENGTH</span><span class="big">${fs.toFixed(1)} %</span></div>
+      <div class="bar"><i style="width:${fs.toFixed(0)}%"></i></div>
+      <div class="rowline"><span class="lbl11">STATE</span><span style="font-weight:700;color:${trip?"var(--crit)":"inherit"}">${trip ? "⚠ LOCKOUT" : "NORMAL"}</span></div>
+      <div class="note">Z${id}_FLAME_SAFETY.FS_Signal_Strength — logged @ 1 s in FlameSafetyFastLog (new)</div>`;
+  }
+}
+
+/* ================= trend charts ================= */
+function lineChart(svgId, ttId, data, seriesDefs, opts) {
+  const svg = $(svgId), tt = $(ttId);
+  const W = svg.clientWidth || 600, H = +svg.getAttribute("height");
+  const M = { l:42, r:64, t:8, b:20 }, iw = W-M.l-M.r, ih = H-M.t-M.b;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  if (!data.length || iw < 40) return;
+  const t0 = data[0].t, t1 = data[data.length-1].t;
+  let lo = opts.min ?? Infinity, hi = opts.max ?? -Infinity;
+  if (opts.min == null || opts.max == null) {
+    for (const d of data) for (const s of seriesDefs) { const v=d[s.key]; if (v<lo) lo=v; if (v>hi) hi=v; }
+    const pad=(hi-lo)*0.12+1; lo=Math.floor((lo-pad)/10)*10; hi=Math.ceil((hi+pad)/10)*10;
+  }
+  const X = t => M.l + (t-t0)/(t1-t0||1)*iw, Y = v => M.t + (1-(v-lo)/(hi-lo||1))*ih;
+  let g = "";
+  for (let i=0;i<=4;i++) { const v=lo+(hi-lo)*i/4, y=Y(v);
+    g += `<line x1="${M.l}" x2="${M.l+iw}" y1="${y}" y2="${y}" stroke="${css("--grid")}"/>`;
+    g += `<text x="${M.l-6}" y="${y+3.5}" text-anchor="end" fill="${css("--muted")}">${Math.round(v)}</text>`; }
+  for (let i=0;i<=3;i++) { const t=t0+(t1-t0)*i/3;
+    g += `<text x="${X(t)}" y="${H-5}" text-anchor="${i===0?"start":i===3?"end":"middle"}" fill="${css("--muted")}">${hms(t).slice(0,5)}</text>`; }
+  g += `<line x1="${M.l}" x2="${M.l+iw}" y1="${M.t+ih}" y2="${M.t+ih}" stroke="${css("--box-line")}"/>`;
+  if (opts.limit != null && opts.limit >= lo && opts.limit <= hi) {
+    const y=Y(opts.limit);
+    g += `<line x1="${M.l}" x2="${M.l+iw}" y1="${y}" y2="${y}" stroke="var(--crit)" stroke-width="1.5" stroke-dasharray="3 4"/>
+          <text x="${M.l+4}" y="${y-4}" fill="var(--crit)" font-weight="600">${opts.limitLabel}</text>`;
+  }
+  const ends = [];
+  for (const s of seriesDefs) {
+    const col = css(s.color); let path = "";
+    data.forEach((d,i) => { path += (i?"L":"M")+X(d.t).toFixed(1)+" "+Y(d[s.key]).toFixed(1); });
+    g += `<path d="${path}" fill="none" stroke="${col}" stroke-width="2" ${s.dash?'stroke-dasharray="5 4"':""} stroke-linejoin="round"/>`;
+    ends.push({ y:Y(data[data.length-1][s.key]), col, label:s.label });
+  }
+  ends.sort((a,b)=>a.y-b.y);
+  for (let i=1;i<ends.length;i++) if (ends[i].y-ends[i-1].y<12) ends[i].y = ends[i-1].y+12;
+  for (const e of ends) g += `<text x="${M.l+iw+5}" y="${clamp(e.y,M.t+8,M.t+ih)+3.5}" fill="${e.col}" font-weight="600">${e.label}</text>`;
+  g += `<g class="hov"></g>`;
+  svg.innerHTML = g;
+  svg.onmousemove = ev => {
+    const r = svg.getBoundingClientRect(), mx = (ev.clientX-r.left)*(W/r.width);
+    const ti = t0 + clamp((mx-M.l)/iw,0,1)*(t1-t0);
+    let best=0, bd=Infinity; data.forEach((d,i)=>{const dd=Math.abs(d.t-ti); if(dd<bd){bd=dd;best=i;}});
+    const d = data[best], x = X(d.t);
+    let hl = `<line x1="${x}" x2="${x}" y1="${M.t}" y2="${M.t+ih}" stroke="${css("--box-line")}"/>`;
+    for (const s of seriesDefs) hl += `<circle cx="${x}" cy="${Y(d[s.key])}" r="4" fill="${css(s.color)}" stroke="#fff" stroke-width="2"/>`;
+    svg.querySelector(".hov").innerHTML = hl;
+    tt.innerHTML = `<div class="tt-t">${hms(d.t)}</div>` + seriesDefs.map(s =>
+      `<div class="row"><span><span class="dot" style="background:${css(s.color)}"></span>${s.label}</span><span class="vl">${d[s.key].toFixed(1)}${opts.unit}</span></div>`).join("");
+    tt.style.display = "block";
+    const card = svg.closest(".card").getBoundingClientRect();
+    let lx = ev.clientX - card.left + 14; if (lx + 160 > card.width) lx = ev.clientX - card.left - 170;
+    tt.style.left = lx + "px"; tt.style.top = (svg.getBoundingClientRect().top - card.top + 8) + "px";
+  };
+  svg.onmouseleave = () => { tt.style.display="none"; const h=svg.querySelector(".hov"); if (h) h.innerHTML=""; };
+}
+function renderTrends() {
+  lineChart("chTemp","ttTemp",S.proc,[
+    {key:"p1",label:"L1 PV",color:"--pen1"},{key:"s1",label:"L1 SP",color:"--pen1",dash:true},
+    {key:"p2",label:"L2 PV",color:"--pen2"},{key:"s2",label:"L2 SP",color:"--pen2",dash:true}],
+    {unit:"°F",limit:425,limitLabel:"HI-LIMIT 425"});
+  lineChart("chOut","ttOut",S.proc,[{key:"o1",label:"Loop 1",color:"--pen1"},{key:"o2",label:"Loop 2",color:"--pen2"}],{unit:"%",min:0,max:100});
+  lineChart("chFlame","ttFlame",S.fast,[{key:"z1",label:"Zone 1",color:"--pen3"},{key:"z2",label:"Zone 2",color:"--pen4"}],{unit:"%",min:0,max:100});
+}
+
+/* ================= data log screen ================= */
+function renderLog() {
+  const est = (rows,cols) => (rows*cols*14/1048576).toFixed(1)+" MB";
+  $("lg1").innerHTML = `rows <b>${S.procRows.toLocaleString()}</b> · last <b>${hms(S.t)}</b> · ≈${est(S.procRows,20)}`;
+  $("lg2").innerHTML = `rows <b>${S.fastRows.toLocaleString()}</b> · last <b>${hms(S.t)}</b> · ≈${est(S.fastRows,4)}`;
+  const cols = ["Time","L1 PV","L1 SP","L1 Out","L2 PV","L2 SP","L2 Out","Z1 FS","Z2 FS","Z1 HiLim","State","Fault","Quality"];
+  let h = "<tr>"+cols.map(c=>`<th>${c}</th>`).join("")+"</tr>";
+  for (const d of S.proc.slice(-10).reverse())
+    h += `<tr><td class="l">${hms(d.t)}</td><td>${d.p1.toFixed(1)}</td><td>${d.s1.toFixed(0)}</td><td>${d.o1.toFixed(0)}%</td>
+      <td>${d.p2.toFixed(1)}</td><td>${d.s2.toFixed(0)}</td><td>${d.o2.toFixed(0)}%</td>
+      <td>${d.z1.toFixed(1)}</td><td>${d.z2.toFixed(1)}</td><td>${d.h1.toFixed(0)}${d.tr1?" ⚠":""}</td>
+      <td>${d.state}</td><td>${d.fault?"1":"0"}</td><td>Good</td></tr>`;
+  $("logTable").innerHTML = h;
+}
+$("btnCsv").addEventListener("click", () => {
+  let csv = "DateAndTime,L1_PV,L1_SP,L1_Out,L2_PV,L2_SP,L2_Out,Z1_FS,Z2_FS,Z1_HiLimit_PV,Z1_HiLimit_Tripped,Skid_Part_Count,Oven_State,Active_Fault,Quality\n";
+  for (const d of S.proc) csv += `${hms(d.t)},${d.p1.toFixed(2)},${d.s1},${d.o1.toFixed(1)},${d.p2.toFixed(2)},${d.s2},${d.o2.toFixed(1)},${d.z1.toFixed(2)},${d.z2.toFixed(2)},${d.h1.toFixed(2)},${d.tr1?1:0},${d.parts},${d.state},${d.fault?1:0},Good\n`;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv],{type:"text/csv"})); a.download = "AgeOvenProcessLog_sample.csv"; a.click();
+});
+
+/* ================= alarms ================= */
+function renderAlarms() {
+  let h = `<tr><th class="l">Time</th><th class="l">Severity</th><th class="l">Tag</th><th class="l">Message</th><th class="l">State</th><th></th></tr>`;
+  if (!S.alarms.length) h += `<tr><td class="l" colspan="6" style="color:var(--muted)">No alarms recorded</td></tr>`;
+  for (const a of S.alarms) {
+    const sev = a.sev==="crit" ? `<span class="sev crit">■ URGENT</span>` : `<span class="sev warn">▲ WARNING</span>`;
+    const st = a.rtn ? (a.ack ? "RTN·ACK" : "RTN·UNACK") : (a.ack ? "ACTIVE·ACK" : "ACTIVE·UNACK");
+    h += `<tr><td class="l">${hms(a.t)}</td><td class="l">${sev}</td><td class="l">${a.tag}</td><td class="l">${a.msg}</td>
+      <td class="l" style="font-weight:${a.ack?400:700}">${st}</td>
+      <td>${a.ack ? "" : `<button class="ackbtn" data-ack="${a.id}">ACK</button>`}</td></tr>`;
+  }
+  $("almTable").innerHTML = h;
+  $("almTable").querySelectorAll("[data-ack]").forEach(b => b.addEventListener("click", () => {
+    const a = S.alarms.find(x => x.id === +b.dataset.ack); if (a) a.ack = true; renderAlarms(); renderChrome();
+  }));
+}
+
+/* ================= maintenance ================= */
+function renderMaint() {
+  $("maintCards").innerHTML = Object.keys(FANS).map(f => {
+    const st = S.fans[f];
+    return `<div class="card clickable" data-fp="motor:${f}" style="cursor:pointer">
+      <h3>${FANS[f].label} FAN</h3>
+      <div class="note">${FANS[f].tag}</div>
+      <div style="font-size:18px;font-weight:700">${st.on ? "RUNNING" : "STOPPED"}</div>
+      <div class="lbl11">run hours ${st.hrs.toLocaleString()}</div></div>`;
+  }).join("");
+  $("maintCards").querySelectorAll("[data-fp]").forEach(el => el.addEventListener("click", () => openFP(el.dataset.fp)));
+}
+
+/* ================= chrome + nav ================= */
+let curScr = "main";
+const SCR_TITLES = { main:"MAIN", trend:"TRENDS", log:"DATA LOG", alarm:"ALARM SUMMARY", maint:"MAINTENANCE" };
+function renderChrome() {
+  $("clock").textContent = hms(S.t);
+  const unack = S.alarms.filter(a => !a.ack && !a.rtn);
+  const line = $("alarmLine");
+  if (unack.length) { line.classList.add("active"); $("alarmTxt").textContent = `⚠ ${hms(unack[0].t)}  ${unack[0].msg}  (${unack.length} unack)`; }
+  else { line.classList.remove("active"); $("alarmTxt").textContent = "No active alarms"; }
+  $("almBadge").textContent = unack.length ? `(${unack.length})` : "";
+}
+document.querySelectorAll("#nav button").forEach(b => b.addEventListener("click", () => {
+  curScr = b.dataset.scr;
+  document.querySelectorAll("#nav button").forEach(x => x.setAttribute("aria-current", x===b ? "true" : "false"));
+  document.querySelectorAll("section.screen").forEach(s => s.classList.toggle("on", s.id === "scr-"+curScr));
+  $("scrTitle").textContent = SCR_TITLES[curScr];
+  renderAll();
+}));
+
+function renderAll() {
+  renderChrome();
+  if (curScr === "main") renderPID();
+  else if (curScr === "trend") renderTrends();
+  else if (curScr === "log") renderLog();
+  else if (curScr === "alarm") renderAlarms();
+  else if (curScr === "maint") renderMaint();
+  if (fpKey) renderFP();
+}
+
+/* ================= sim controls ================= */
+function setRunning(run) {
+  S.running = run;
+  $("btnRun").setAttribute("aria-pressed", String(run));
+  $("btnPause").setAttribute("aria-pressed", String(!run));
+  renderAll();
+}
+$("btnRun").addEventListener("click", () => setRunning(true));
+$("btnPause").addEventListener("click", () => setRunning(false));
+$("btnReset").addEventListener("click", () => { restart(); renderAll(); });
+$("selScenario").addEventListener("change", e => {
+  S.scenario = e.target.value;
+  if (S.scenario !== "trip") { S.hi1.trip = false; S.fault = false; returnAlarm("Z1_HI_LIMIT"); returnAlarm("Z1_TEMP_HI"); }
+  renderAll();
+});
+let acc = 0;
+setInterval(() => {
+  if (!S.running) return;
+  acc += +$("selSpeed").value;
+  while (acc >= 4) { simStep(); acc -= 4; }
+  renderAll();
+}, 250);
+window.addEventListener("resize", renderAll);
+setRunning(true);
+</script>
+</body>
+</html>

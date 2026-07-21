@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Improved data logging for the Koch Age Oven (FTOptix DataLogger).
+
+  Improvements over the FT View ME "Age Oven flame intensity" model:
+    1. SQL-queryable storage (embedded SQLite) instead of proprietary
+       .dat log sets - no more DAT-to-CSV conversion to get data out.
+    2. Wider scope: hi-limit PVs/trip status, fan run status, and
+       production context (part count, oven state, fault flag) are
+       logged alongside the original loop/flame-safety tags.
+    3. Timestamped rows with quality status per sample.
+    4. Explicit retention policy instead of fixed-size file wrap.
+    5. Second logger at 1 s captures flame-safety detail for
+       troubleshooting without bloating the main process table.
+-->
+<DataLoggers>
+
+  <!-- Main process log: everything QA needs to reconstruct a run -->
+  <DataLogger name="AgeOvenProcessLog">
+    <Store>EmbeddedDatabase/AgeOvenLogs</Store>
+    <TableName>ProcessLog</TableName>
+    <SamplingMode>Periodic</SamplingMode>
+    <SamplingPeriodMs>10000</SamplingPeriodMs>
+    <LogVariableQuality>true</LogVariableQuality>
+    <LogVariableTimestamp>true</LogVariableTimestamp>
+    <RetentionDays>365</RetentionDays>
+    <VariablesToLog>
+      <Variable>Model/ControlLoops/Loop1_PV</Variable>
+      <Variable>Model/ControlLoops/Loop1_Target_SP</Variable>
+      <Variable>Model/ControlLoops/Loop1_Working_Output</Variable>
+      <Variable>Model/ControlLoops/Loop2_PV</Variable>
+      <Variable>Model/ControlLoops/Loop2_Target_SP</Variable>
+      <Variable>Model/ControlLoops/Loop2_Working_Output</Variable>
+      <Variable>Model/FlameSafety/Z1_FS_Signal_Strength</Variable>
+      <Variable>Model/FlameSafety/Z2_FS_Signal_Strength</Variable>
+      <Variable>Model/HiLimits/Z1_HiLimit_PV</Variable>
+      <Variable>Model/HiLimits/Z1_HiLimit_Tripped</Variable>
+      <Variable>Model/HiLimits/Z2_HiLimit_PV</Variable>
+      <Variable>Model/HiLimits/Z2_HiLimit_Tripped</Variable>
+      <Variable>Model/Motors/Z1_Comb_Air_Fan_Running</Variable>
+      <Variable>Model/Motors/Z1_ReCirc_Fan_Running</Variable>
+      <Variable>Model/Motors/Z2_Comb_Air_Fan_Running</Variable>
+      <Variable>Model/Motors/Z2_ReCirc_Fan_Running</Variable>
+      <Variable>Model/Motors/Exhaust_Fan_Running</Variable>
+      <Variable>Model/Production/Skid_Part_Count</Variable>
+      <Variable>Model/Production/Oven_State</Variable>
+      <Variable>Model/Production/Active_Fault</Variable>
+    </VariablesToLog>
+  </DataLogger>
+
+  <!-- High-rate flame-safety log for burner troubleshooting -->
+  <DataLogger name="FlameSafetyFastLog">
+    <Store>EmbeddedDatabase/AgeOvenLogs</Store>
+    <TableName>FlameSafetyFast</TableName>
+    <SamplingMode>Periodic</SamplingMode>
+    <SamplingPeriodMs>1000</SamplingPeriodMs>
+    <LogVariableQuality>true</LogVariableQuality>
+    <LogVariableTimestamp>true</LogVariableTimestamp>
+    <RetentionDays>30</RetentionDays>
+    <VariablesToLog>
+      <Variable>Model/FlameSafety/Z1_FS_Signal_Strength</Variable>
+      <Variable>Model/FlameSafety/Z2_FS_Signal_Strength</Variable>
+      <Variable>Model/ControlLoops/Loop1_Working_Output</Variable>
+      <Variable>Model/ControlLoops/Loop2_Working_Output</Variable>
+    </VariablesToLog>
+  </DataLogger>
+
+</DataLoggers>

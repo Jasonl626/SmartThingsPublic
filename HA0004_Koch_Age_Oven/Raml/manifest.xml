@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Manifest RuntimeSecurityEnabled="False" AdminSecurityEnabled="False" RuntimeDefaultTagWriteEnable="False" CurrentApplication="HA0004_Koch_Age_Oven" CurrentTargetPlatform="MEStandAlone" CurrentScope="$Local" Version="8.0.24.0">
+	<Applications>
+		<Application Name="HA0004_Koch_Age_Oven" StartPage="/::FurnaceMain" StartupMacro="" HMIServer="localhost" HMIProject="HA0004_Koch_Age_Oven" TargetPlatform="MEStandAlone" SecurityEnabled="False" WriteEnabled="False" ForceRepublish="False" PublishLanguage="en-US" Scope="$Local">
+			<Display Name="FurnaceMain" LastModified="Mon, 12 May 2025 18:18:54 GMT" DisplayType="0" AddedToRAMLZip="true">
+				<Image FileName="Illuminated round pushbutton on legend plate (Amber Down On)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Amber Up Off)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Green Up Off)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Red Down On)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Red Up Off)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated round pushbutton (Amber Up Off)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Indicator light (Red On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Indicator light (Amber Off)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="InfoIcon" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Indicator light (Amber On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Illuminated round pushbutton (Amber Down On)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Indicator light (Green On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Green Down On)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Fault Log Icon Med" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="GRADIENT_GR_RED" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="exclamation_sm" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<GlobalObject FileName="NavBar" LastModified="Wed, 09 Apr 2025 17:57:31 GMT" />
+				<LocalMessage FileName="System_Fault_Msg" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<LocalMessage FileName="System_Status_Msg" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+			</Display>
+			<Display Name="Operator_Profile_Screen" LastModified="Wed, 09 Apr 2025 17:56:53 GMT" DisplayType="0" AddedToRAMLZip="true">
+				<Image FileName="Illuminated rectangular pushbutton (Blue Down On)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Amber Up Off)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Green Up Off)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated rectangular pushbutton (Blue Up Off)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="exclamation_sm" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Indicator light (Red On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Green Down On)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Amber Down On)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Arrow Right" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="InfoIcon" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Previous page" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Indicator light (Amber On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Indicator light (Green On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Arrow Left" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Fault Log Icon Med" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="GRADIENT_GR_RED" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<GlobalObject FileName="NavBar" LastModified="Wed, 09 Apr 2025 17:57:31 GMT" />
+				<LocalMessage FileName="System_Fault_Msg" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<LocalMessage FileName="System_Status_Msg" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+			</Display>
+			<Display Name="Soak_Data_Screen" LastModified="Wed, 09 Apr 2025 17:56:55 GMT" DisplayType="0" AddedToRAMLZip="true">
+				<Image FileName="Previous page" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="exclamation_sm" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Fault Log Icon Med" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Amber Down On)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Blue-Radial-Gradient-800x600" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="InfoIcon" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="GRADIENT_GR_RED" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<Image FileName="Indicator light (Red On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Indicator light (Green On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Indicator light (Amber On)" LastModified="Wed, 09 Apr 2025 17:52:08 GMT" />
+				<Image FileName="Illuminated round pushbutton on legend plate (Amber Up Off)" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<GlobalObject FileName="NavBar" LastModified="Wed, 09 Apr 2025 17:57:31 GMT" />
+				<LocalMessage FileName="System_Fault_Msg" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+				<LocalMessage FileName="System_Status_Msg" LastModified="Wed, 09 Apr 2025 17:52:07 GMT" />
+			</Display>
+		</Application>
+	</Applications>
+</Manifest>

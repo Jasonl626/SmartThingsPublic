@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Communication driver definition for the Koch Age Oven.
+
+  Replaces the FactoryTalk View ME "Aging_Furnace" FactoryTalk Linx
+  shortcut. The PLC is a ControlLogix (1756 family, per the source
+  project's Maintenance_PLC_* screens); the nanodac, flame safety,
+  hi-limit and recorder instruments are read by the PLC over Modbus
+  and exposed to the HMI through PLC UDTs, so a single RA EtherNet/IP
+  driver station covers everything the HMI needs.
+
+  Set Address to the real PLC IP before deployment.
+-->
+<CommDrivers>
+  <RAEtherNetIPDriver name="RAEtherNet_IP">
+    <Station name="Aging_Furnace">
+      <Address>192.168.1.10</Address>
+      <Slot>0</Slot>
+      <PollingPeriodMs>500</PollingPeriodMs>
+      <Comment>Maps 1:1 to the FT View ME device shortcut [Aging_Furnace]</Comment>
+    </Station>
+  </RAEtherNetIPDriver>
+</CommDrivers>
