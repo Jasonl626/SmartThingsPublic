@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gfx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Gfx-ME16.xsd">
+    <displaySettings displayType="replace" cannotBeReplaced="false" positionX="0" positionY="0" securityCode="*" backColor="#C6C8C9" titleBar="false" maximumTagUpdateRate="0.5" focusHighlightColor="gray" disableFocusHighlight="false" size="specifySizeInPixels" width="800" height="600" displayNumber="11" disableInitialInputFocus="false" startupMacro="" shutdownMacro="" useGradientStyle="false" endColor="teal" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <rectangle name="Canvas" height="600" width="800" left="0" top="0" visible="true" wallpaper="true" isReferenceObject="false" backStyle="solid" backColor="#C6C8C9" foreColor="#C6C8C9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <rectangle name="Header" height="46" width="800" left="0" top="0" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#4A4E52" foreColor="#4A4E52" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="Title" height="24" width="640" left="10" top="12" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="white" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="15" bold="true" italic="false" underline="false" strikethrough="false" caption="AGE OVEN  —  LOGGED PROCESS VALUES  (AgeOvenProcessLog)"/>
+    <rectangle name="NrowBg0" height="38" width="384" left="20" top="66" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL0" height="20" width="210" left="30" top="74" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Loop 1 PV"/>
+    <numericDisplay name="NV0" height="32" width="140" left="256" top="69" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="1" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP1.PV}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg1" height="38" width="384" left="20" top="110" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL1" height="20" width="210" left="30" top="118" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Loop 1 Target SP"/>
+    <numericDisplay name="NV1" height="32" width="140" left="256" top="113" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="0" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP1.Target_SP}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg2" height="38" width="384" left="20" top="154" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL2" height="20" width="210" left="30" top="162" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Loop 1 Output %"/>
+    <numericDisplay name="NV2" height="32" width="140" left="256" top="157" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="0" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP1.Working_Output}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg3" height="38" width="384" left="20" top="198" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL3" height="20" width="210" left="30" top="206" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Loop 2 PV"/>
+    <numericDisplay name="NV3" height="32" width="140" left="256" top="201" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="1" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP2.PV}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg4" height="38" width="384" left="20" top="242" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL4" height="20" width="210" left="30" top="250" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Loop 2 Target SP"/>
+    <numericDisplay name="NV4" height="32" width="140" left="256" top="245" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="0" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP2.Target_SP}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg5" height="38" width="384" left="20" top="286" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL5" height="20" width="210" left="30" top="294" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Loop 2 Output %"/>
+    <numericDisplay name="NV5" height="32" width="140" left="256" top="289" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="0" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]HMI_NANODAC_PARAMETERS_REAL.LOOP2.Working_Output}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg6" height="38" width="384" left="416" top="66" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL6" height="20" width="210" left="426" top="74" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z1 Flame Signal %"/>
+    <numericDisplay name="NV6" height="32" width="140" left="652" top="69" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="1" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]Z1_FLAME_SAFETY.FS_Signal_Strength}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg7" height="38" width="384" left="416" top="110" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL7" height="20" width="210" left="426" top="118" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z2 Flame Signal %"/>
+    <numericDisplay name="NV7" height="32" width="140" left="652" top="113" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="1" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]Z2_FLAME_SAFETY.FS_Signal_Strength}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg8" height="38" width="384" left="416" top="154" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL8" height="20" width="210" left="426" top="162" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z1 Hi-Limit PV"/>
+    <numericDisplay name="NV8" height="32" width="140" left="652" top="157" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="0" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]HMI_COMM_CONFIG_MB_Z1_HI_LIMIT.PV}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg9" height="38" width="384" left="416" top="198" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL9" height="20" width="210" left="426" top="206" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z2 Hi-Limit PV"/>
+    <numericDisplay name="NV9" height="32" width="140" left="652" top="201" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="0" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]HMI_COMM_CONFIG_MB_Z2_HI_LIMIT.PV}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg10" height="38" width="384" left="416" top="242" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL10" height="20" width="210" left="426" top="250" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Skid Part Count"/>
+    <numericDisplay name="NV10" height="32" width="140" left="652" top="245" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="0" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]SKID_PART_COUNT}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="NrowBg11" height="38" width="384" left="416" top="286" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="NL11" height="20" width="210" left="426" top="294" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Oven State"/>
+    <numericDisplay name="NV11" height="32" width="140" left="652" top="289" visible="true" wallpaper="false" isReferenceObject="false" backColor="white" backStyle="solid" borderColor="#6D7276" borderStyle="line" borderUsesBackColor="false" borderWidth="2" foreColor="black" alignment="middleRight" blink="false" patternColor="white" patternStyle="none" description="" decimalPlaces="0" numberOfDigits="7" fillLeftWith="none" fontFamily="Arial" fontSize="14" bold="true" italic="false" underline="false" strikethrough="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+        <connections>
+            <connection name="Value" expression="{[Aging_Furnace]OVEN_STATE}"/>
+        </connections>
+    </numericDisplay>
+    <rectangle name="BrowBg0" height="38" width="384" left="20" top="350" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="BL0" height="20" width="300" left="64" top="359" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z1 Hi-Limit Tripped"/>
+    <multistateIndicator name="BI0" height="24" width="24" left="30" top="358" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" borderStyle="line" borderUsesBackColor="true" borderWidth="8" description="" shape="circle" triggerType="value" currentStateId="0" captionOnBorder="false" setLastStateId="4">
+        <states>
+            <state stateId="Error" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="0" value="0" backColor="gray" borderColor="gray" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="gray" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="1" value="1" backColor="#F83D3D" borderColor="#F83D3D" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="#F83D3D" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="2" value="2" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="3" value="3" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+        </states>
+        <connections>
+            <connection name="Indicator" expression="{[Aging_Furnace]HMI_COMM_CONFIG_MB_Z1_HI_LIMIT.Tripped}"/>
+        </connections>
+    </multistateIndicator>
+    <rectangle name="BrowBg1" height="38" width="384" left="20" top="394" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="BL1" height="20" width="300" left="64" top="403" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z2 Hi-Limit Tripped"/>
+    <multistateIndicator name="BI1" height="24" width="24" left="30" top="402" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" borderStyle="line" borderUsesBackColor="true" borderWidth="8" description="" shape="circle" triggerType="value" currentStateId="0" captionOnBorder="false" setLastStateId="4">
+        <states>
+            <state stateId="Error" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="0" value="0" backColor="gray" borderColor="gray" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="gray" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="1" value="1" backColor="#F83D3D" borderColor="#F83D3D" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="#F83D3D" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="2" value="2" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="3" value="3" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+        </states>
+        <connections>
+            <connection name="Indicator" expression="{[Aging_Furnace]HMI_COMM_CONFIG_MB_Z2_HI_LIMIT.Tripped}"/>
+        </connections>
+    </multistateIndicator>
+    <rectangle name="BrowBg2" height="38" width="384" left="20" top="438" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="BL2" height="20" width="300" left="64" top="447" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z1 Comb Air Fan Run"/>
+    <multistateIndicator name="BI2" height="24" width="24" left="30" top="446" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" borderStyle="line" borderUsesBackColor="true" borderWidth="8" description="" shape="circle" triggerType="value" currentStateId="0" captionOnBorder="false" setLastStateId="4">
+        <states>
+            <state stateId="Error" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="0" value="0" backColor="gray" borderColor="gray" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="gray" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="1" value="1" backColor="#10EB10" borderColor="#10EB10" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="#10EB10" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="2" value="2" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="3" value="3" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+        </states>
+        <connections>
+            <connection name="Indicator" expression="{[Aging_Furnace]ZONE1.Comb_Air_Fan.Running}"/>
+        </connections>
+    </multistateIndicator>
+    <rectangle name="BrowBg3" height="38" width="384" left="20" top="482" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="BL3" height="20" width="300" left="64" top="491" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z1 Recirc Fan Run"/>
+    <multistateIndicator name="BI3" height="24" width="24" left="30" top="490" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" borderStyle="line" borderUsesBackColor="true" borderWidth="8" description="" shape="circle" triggerType="value" currentStateId="0" captionOnBorder="false" setLastStateId="4">
+        <states>
+            <state stateId="Error" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="0" value="0" backColor="gray" borderColor="gray" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="gray" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="1" value="1" backColor="#10EB10" borderColor="#10EB10" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="#10EB10" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="2" value="2" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="3" value="3" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+        </states>
+        <connections>
+            <connection name="Indicator" expression="{[Aging_Furnace]ZONE1.ReCirc_Fan.Running}"/>
+        </connections>
+    </multistateIndicator>
+    <rectangle name="BrowBg4" height="38" width="384" left="416" top="350" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="BL4" height="20" width="300" left="460" top="359" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z2 Comb Air Fan Run"/>
+    <multistateIndicator name="BI4" height="24" width="24" left="426" top="358" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" borderStyle="line" borderUsesBackColor="true" borderWidth="8" description="" shape="circle" triggerType="value" currentStateId="0" captionOnBorder="false" setLastStateId="4">
+        <states>
+            <state stateId="Error" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="0" value="0" backColor="gray" borderColor="gray" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="gray" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="1" value="1" backColor="#10EB10" borderColor="#10EB10" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="#10EB10" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="2" value="2" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="3" value="3" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+        </states>
+        <connections>
+            <connection name="Indicator" expression="{[Aging_Furnace]ZONE2.Comb_Air_Fan.Running}"/>
+        </connections>
+    </multistateIndicator>
+    <rectangle name="BrowBg5" height="38" width="384" left="416" top="394" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="BL5" height="20" width="300" left="460" top="403" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Z2 Recirc Fan Run"/>
+    <multistateIndicator name="BI5" height="24" width="24" left="426" top="402" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" borderStyle="line" borderUsesBackColor="true" borderWidth="8" description="" shape="circle" triggerType="value" currentStateId="0" captionOnBorder="false" setLastStateId="4">
+        <states>
+            <state stateId="Error" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="0" value="0" backColor="gray" borderColor="gray" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="gray" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="1" value="1" backColor="#10EB10" borderColor="#10EB10" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="#10EB10" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="2" value="2" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="3" value="3" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+        </states>
+        <connections>
+            <connection name="Indicator" expression="{[Aging_Furnace]ZONE2.ReCirc_Fan.Running}"/>
+        </connections>
+    </multistateIndicator>
+    <rectangle name="BrowBg6" height="38" width="384" left="416" top="438" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="BL6" height="20" width="300" left="460" top="447" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="Exhaust Fan Run"/>
+    <multistateIndicator name="BI6" height="24" width="24" left="426" top="446" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" borderStyle="line" borderUsesBackColor="true" borderWidth="8" description="" shape="circle" triggerType="value" currentStateId="0" captionOnBorder="false" setLastStateId="4">
+        <states>
+            <state stateId="Error" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="0" value="0" backColor="gray" borderColor="gray" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="gray" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="1" value="1" backColor="#10EB10" borderColor="#10EB10" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="#10EB10" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="2" value="2" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="3" value="3" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+        </states>
+        <connections>
+            <connection name="Indicator" expression="{[Aging_Furnace]EXHAUST.Fan.Running}"/>
+        </connections>
+    </multistateIndicator>
+    <rectangle name="BrowBg7" height="38" width="384" left="416" top="482" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" backColor="#D6D8D9" foreColor="#D6D8D9" lineStyle="solid" lineWidth="1" patternStyle="none" patternColor="#E0E0E0" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight"/>
+    <text name="BL7" height="20" width="300" left="460" top="491" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="black" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="11" bold="true" italic="false" underline="false" strikethrough="false" caption="System Fault Active"/>
+    <multistateIndicator name="BI7" height="24" width="24" left="426" top="490" visible="true" wallpaper="false" isReferenceObject="false" backStyle="solid" borderStyle="line" borderUsesBackColor="true" borderWidth="8" description="" shape="circle" triggerType="value" currentStateId="0" captionOnBorder="false" setLastStateId="4">
+        <states>
+            <state stateId="Error" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="0" value="0" backColor="gray" borderColor="gray" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="gray" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="1" value="1" backColor="#F83D3D" borderColor="#F83D3D" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="#F83D3D" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="2" value="2" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+            <state stateId="3" value="3" backColor="navy" borderColor="navy" patternColor="white" patternStyle="none" blink="false" endColor="white" gradientStop="50" gradientDirection="gradientDirectionHorizontal" gradientShadingStyle="gradientHorizontalFromRight">
+                <caption fontFamily="Arial Unicode MS" fontSize="10" bold="false" italic="false" underline="false" strikethrough="false" caption="" color="white" backColor="navy" backStyle="transparent" alignment="middleCenter" wordWrap="true" blink="false"/>
+                <imageSettings imageName="" alignment="middleCenter" backStyle="transparent" color="white" backColor="navy" scaled="false" blink="false"/>
+            </state>
+        </states>
+        <connections>
+            <connection name="Indicator" expression="{[Aging_Furnace]SYSTEM_FAULT_ACTIVE}"/>
+        </connections>
+    </multistateIndicator>
+    <text name="Foot" height="18" width="760" left="20" top="560" visible="true" wallpaper="false" isReferenceObject="false" backStyle="transparent" backColor="white" foreColor="#43484C" wordWrap="true" sizeToFit="false" alignment="middleLeft" fontFamily="Arial" fontSize="9" bold="false" italic="false" underline="false" strikethrough="false" caption="Improved data logging: 20 tags at 10 s (process) + Z1/Z2 flame at 1 s (FlameSafetyFastLog). Timestamp + quality per sample."/>
+</gfx>
