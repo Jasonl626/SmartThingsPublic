@@ -10,7 +10,7 @@ displays in the `HA0004_Koch_Age_Oven` project.
 
 | File | Display # | Contents |
 |---|---|---|
-| `AgeOven_MAIN.xml` | 10 | PlantPAx-style overview: Zone 1/2 loop PV·SP·Output, hi-limit PV + trip, flame %, five fan run indicators, system-fault + skid part count |
+| `AgeOven_MAIN.xml` | 10 | PlantPAx **graphical P&ID overview**: oven vessel with Zone 1/2, fans + ducts, conveyor with skids, burners with flame indicators, embedded per-zone readout panels (PV·SP·Output·Hi-Limit), hi-limit trip, system-fault + skid part count. Green = running/OK, red = fault/trip (matches your Motor screen's house style) |
 | `AgeOven_PROCESS_VALUES.xml` | 11 | All 20 improved-logging tags: 12 numeric values + 8 boolean indicators |
 
 Every element and attribute here was copied from your own export — only
